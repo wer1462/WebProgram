@@ -89,20 +89,14 @@ public class FrontController extends HttpServlet {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-		
-//		if(viewPage!=null) {
-//			RequestDispatcher rd = request.getRequestDispatcher(viewPage);
-//			rd.forward(request, response);
-//		}
+
 		
 		RequestDispatcher rd = null;
-		if(viewPage.equals("/WEB-INF/views/member/idCheck.jsp")||viewPage.equals("/WEB-INF/views/member/zipcode.jsp")) {//조건 맞추기
-			rd=request.getRequestDispatcher(viewPage);			
-		}else{
-			request.setAttribute("viewPage", viewPage);
-			rd = request.getRequestDispatcher("");//경로 재설정
 		
-		}
+		request.setAttribute("viewPage", viewPage);
+		rd = request.getRequestDispatcher("");//경로 재설정
+		
+		
 		
 		rd.forward(request, response);
 	
