@@ -92,13 +92,11 @@ public class FrontController extends HttpServlet {
 
 		
 		RequestDispatcher rd = null;
-		
-		request.setAttribute("viewPage", viewPage);
-		rd = request.getRequestDispatcher("");//경로 재설정
-		
-		
-		
-		rd.forward(request, response);
+		if(viewPage!=null) {
+			request.setAttribute("viewPage", viewPage);
+			rd = request.getRequestDispatcher("/template/template.jsp");//경로 재설정	
+			rd.forward(request, response);
+		}
 	
 	}
 

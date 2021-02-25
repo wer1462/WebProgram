@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.map.mapper.MapMapper">
+	<select id="mapList" resultType="com.java.map.dto.MapDto">
+		select "room_MapX","room_MapY","room_Num" from room
+	</select>
+	
+	<select id="mapClickList" resultType="com.java.map.dto.MapDto">
+		select "room_Price","room_Manageprice","room_Type","room_RentType","room_LikeNum" from room where "room_Num" = #{num}
+	</select>
+
+
+</mapper>
