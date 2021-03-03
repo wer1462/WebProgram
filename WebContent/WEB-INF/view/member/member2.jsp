@@ -28,7 +28,7 @@
 			<div class="login-box-l">
 			</div>
 			<div class="login-box-r">
-				<div class="login-form">
+				<div class="login-form animate__animated animate__fadeInRight">
 					<div class="login-t member-t">
 						<ul>
 							<!-- <li>로고</li> -->
@@ -93,7 +93,7 @@
 						</div>
 						<div class="login-f">
 							<div class="login-ac member-ac">
-								<a href="#">아이디·비밀번호로 돌아가기</a>
+								<a href="${root }/member/register.in">아이디·비밀번호로 돌아가기</a>
 								<input type="submit" value="계정 만들기">
 							</div>
 						</div>

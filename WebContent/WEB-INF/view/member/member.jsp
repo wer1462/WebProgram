@@ -47,12 +47,12 @@
 		<div id="login-box">
 			<div class="login-box-l"></div>
 			<div class="login-box-r">
-				<div class="login-form">
+				<div class="login-form animate__animated animate__fadeInRight"> 
 					<div class="login-t member-t">
 						<ul>
 							<!-- <li>로고</li> -->
 							<li>회원가입</li>
-							<li>이미 계정이 있으신가요? <a href="#">로그인</a></li>
+							<li>이미 계정이 있으신가요? <a href="${root }/member/loginPage.in">로그인</a></li>
 						</ul>
 					</div>
 
@@ -76,7 +76,7 @@
 						</div>
 						<div class="login-f">
 							<div class="login-ac member-ac">
-								<a href="#">로그인으로 돌아가기</a> <input type="submit" value="계속">
+								<a href="${root }/member/loginPage.in">로그인으로 돌아가기</a> <input type="submit" value="계속">
 							</div>
 						</div>
 					</form>

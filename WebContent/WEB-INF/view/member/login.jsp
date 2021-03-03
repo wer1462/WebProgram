@@ -15,6 +15,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 	
 <meta charset="UTF-8">
 <title>login</title>
@@ -26,7 +27,7 @@
 			<div class="login-box-l">
 			</div>
 			<div class="login-box-r">
-				<div class="login-form">
+				<div class="login-form animate__animated animate__fadeInRight">
 					<div class="login-t">
 						<ul>
 							<!-- <li>로고</li> -->
