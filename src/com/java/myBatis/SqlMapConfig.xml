@@ -17,7 +17,7 @@
   </environments>
   <mappers>
     <!-- 형식 보고 맞추기 <mapper resource="com/java/guest/mapper/GuestMapper.xml"/> -->
-
+	<mapper resource="com/java/member/mapper/MemberMapper.xml"/>
     <mapper resource="com/java/map/mapper/MapMapperxml.xml"/>
   </mappers>
 </configuration>

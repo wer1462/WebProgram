@@ -12,5 +12,17 @@
 		select "room_Price","room_Manageprice","room_Type","room_RentType","room_LikeNum" from room where "room_Num" = #{num}
 	</select>
 
-
+  <select id="boardCount" resultType="int">
+    	select count(*) from room
+  </select>
+    
+    
+      <select id="boardList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
+    	<![CDATA[
+    		select "room_Type","room_Floor","room_Size","room_Manageprice" from (select rownum as rnum, a.* 
+    		from (select * from room order by "room_Num" desc) a) b 
+    		where b.rnum >= #{startRow} and b.rnum<=#{endRow}
+    	]]>
+    </select>
+    
 </mapper>

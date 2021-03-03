@@ -1,6 +1,7 @@
 package com.java.map.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,7 @@ public class MapDao{
 			
 			for(int i = 0;i<arr.length;i++) {
 				int num = Integer.parseInt(arr[i]);
-				mapList.add((MapDto) session.selectList("mapClickList",num).get(0));
+				mapList.add((MapDto) session.selectOne("mapClickList",num));
 			}
 			
 		} catch (Exception e) {
@@ -54,6 +55,39 @@ public class MapDao{
 			session.close();
 		}
 		return mapList;
+	}
+
+	public int getCount() {
+		int count = 0;
+
+		try {
+			session = sqlSessionFactory.openSession();
+			count = session.selectOne("boardCount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return count;
+	}
+
+	public List<MapDto> getBoardList(int startRow, int endRow) {
+		List<MapDto> valueList = null;
+		HashMap<String,Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+
+		try {
+			session = sqlSessionFactory.openSession();
+			valueList = session.selectList("boardList",hMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return valueList;
 	}
 	
 

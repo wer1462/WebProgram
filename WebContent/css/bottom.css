@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-6Bold';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-4Regular';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-1Thin';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-1Thin.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-5Medium';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+#footer{
+	width: 100%;
+	margin: 0 auto;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#footer-box{
+	width: 100%;
+	margin: 0 auto;
+	
+	display: flex;
+	justify-content: center;
+	background-color: #1e1e1e;
+}
+
+#footer-frame{
+	width: 70%;
+	margin: 0 auto;
+	
+	margin-top: 34px;
+	margin-bottom: 48px;
+}
+
+#footer-frame a{
+	text-decoration: none;
+	color: #ccc;
+}
+
+#footer-frame a:visited{
+	text-decoration: none;
+	color: #ccc;
+}
+
+.footerFrame-head{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.footerFrame-body{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.footerFrame-head li{
+	list-style: none;
+	display: inline;
+	
+	font-size: 12px;
+	font-weight: 400;
+	color: #ccc;
+	margin-right: 7px;
+	
+	height: 32px;
+	line-height: 32px;
+	
+	margin-right: 7px;
+	margin-left: 7px
+}
+
+.footerFrame-head span{
+	float: right;
+}
+
+.footerbody-first{
+	width: 100%;
+	margin: 0 auto;
+	
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 16px;
+}
+
+.footerbody-second{
+	width: 100%;
+	margin: 0 auto;
+	
+	height: 28px;
+	line-height: 28px;
+}
+
+.footerFrame-body li{
+	list-style: none;
+	display: inline;
+	
+	font-size: 12px;
+	font-weight: 400;
+	color: #8c8c8c;
+	margin-right: 7px;
+	margin-left: 7px
+}
+
+.footerFrame-body li span{
+	list-style: none;
+	display: inline;
+	
+	font-size: 12px;
+	font-weight: 400;
+	color: #ccc;
+	margin-right: 10px;
+	margin-left: 8px;
+}

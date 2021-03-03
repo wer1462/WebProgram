@@ -1,144 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+<!doctype html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+	
+	<link rel="stylesheet" href="css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="css/main-page.css" type="text/css"/>
+	
+	<link rel="stylesheet" href="css/all.css" type="text/css"/>
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	
+<meta charset="utf-8">
+<title>main</title>
 </head>
-<body>
-	<div id="area">
-		<div id="search">
-			<div id="search-box-head">
-				<div class="search-box-title">
-					<p>
-						½ÃÈï¡¤¾È»êÀÇ <span>¾î¶² ¹æ</span>¿¡¼­
-					</p>
-					<p>
-						»ì°í ½ÍÀ¸½Å°¡¿ä<span class="search-box-title-question">?</span>
-					</p>
+
+<body id="wrap">
+	<div id="main">
+		<div id="main-box">
+			<div id="search">
+				<div id="search-t" class="animate__animated animate__fadeInUp animate__delay-1s">
+					<p><span>ì‹œí¥Â·ì•ˆì‚°</span>ì˜ <span>ëª¨ë“  ë°©</span></p>
+					<p>ì—¬ê¸°, ì¸ë£¸ì—ì„œ ì°¾ì•„ë“œë ¤ìš”.</p>
 				</div>
-			</div>
-			<div id="search-box-body">
-				<div class="search-box-action">
-					<form>
-						<img src="images/loupe.png" /> <input type="text" />
-						<button>¹æ Ã£±â</button>
-					</form>
+				<div id="search-m" class="animate__animated animate__fadeInUp animate__delay-2s">
+					<div id="search-m-ac">
+						<form>
+							<img src="images/loupe.png"/>
+							<input type="text"/>
+							<button>ë°© ì°¾ê¸°</button>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div id="search-box-body-tag">
-				<div class="search-box-tag">
-					<ul>
-						<li><a class="search-box-tag-fav">ÀÎ±â °Ë»ö¾î</a></li>
-						<li><a href="#">#¾È»ê</a></li>
-						<li><a href="#">#½ÃÈï</a></li>
-						<li><a href="#">#Áß¾Óµ¿</a></li>
-						<li><a href="#">#¹è°ð½Åµµ½Ã</a></li>
-						<li><a href="#">#°íÀÜµ¿</a></li>
-						<li><a href="#">#½ÃÈï´ë¾ß</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div id="favorite">
-			<div id="favorite-box-head">
-				<div class="favorite-box-title">
-					<p>
-						ÀÌ¹ø ÁÖ <span>ÀÎ±âÀÖ´Â ÀÎ·ë</span>À» ÇÑ ´«¿¡ <a>¸ÅÁÖ ¿ù¿äÀÏÀ» ±âÁØÀ¸·Î ¾÷µ¥ÀÌÆ® µË´Ï´Ù.</a>
-					</p>
-					<!-- <p>Á¶È¸¼ö°¡ °¡Àå ¸¹Àº ¹æÀ» ÇÑ´«¿¡</p> -->
-				</div>
-			</div>
-			<div id="favorite-box-body">
-				<div class="favorite-box-top5">
-					<ul>
-						<li>
-							<div class="top5-box"
-								onClick="location.href='https://www.zigbang.com/home/officetel/items/25996647';">
-								<div class="top5-box-head top5-1"></div>
-								<div class="top5-box-body">
-									<p class="top5-box-body-tag-room">
-										<a>¿ø·ë</a><a>¾È»ê</a><a>°ü½É999+</a>
-									</p>
-									<p class="top5-box-body-tag-price">
-										<a>999/99</a>
-									</p>
-									<p class="top5-box-body-tag-info">
-										<a>1Ãþ, 37m©÷, °ü¸®ºñ 5¸¸</a><br /> <a>¼¼¸í¿¡¼­µµ ÃæºÐÈ÷ »ç´Â Áý</a>
-									</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="top5-box">
-								<div class="top5-box-head top5-2"></div>
-								<div class="top5-box-body">
-									<p class="top5-box-body-tag-room">
-										<a>¿ÀÇÇ½ºÅÚ</a><a>¾È»ê</a><a>°ü½É999+</a>
-									</p>
-									<p class="top5-box-body-tag-price">
-										<a>999/99</a>
-									</p>
-									<p class="top5-box-body-tag-info">
-										<a>1Ãþ, 37m©÷, °ü¸®ºñ 5¸¸</a><br /> <a>¼¼¸í¿¡¼­µµ ÃæºÐÈ÷ »ç´Â Áý</a>
-									</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="top5-box">
-								<div class="top5-box-head top5-3"></div>
-								<div class="top5-box-body">
-									<p class="top5-box-body-tag-room">
-										<a>¿ÀÇÇ½ºÅÚ</a><a>¾È»ê</a><a>°ü½É999+</a>
-									</p>
-									<p class="top5-box-body-tag-price">
-										<a>999/99</a>
-									</p>
-									<p class="top5-box-body-tag-info">
-										<a>1Ãþ, 37m©÷, °ü¸®ºñ 5¸¸</a><br /> <a>¼¼¸í¿¡¼­µµ ÃæºÐÈ÷ »ç´Â Áý</a>
-									</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="top5-box">
-								<div class="top5-box-head top5-4"></div>
-								<div class="top5-box-body">
-									<p class="top5-box-body-tag-room">
-										<a>¿ÀÇÇ½ºÅÚ</a><a>¾È»ê</a><a>°ü½É999+</a>
-									</p>
-									<p class="top5-box-body-tag-price">
-										<a>999/99</a>
-									</p>
-									<p class="top5-box-body-tag-info">
-										<a>1Ãþ, 37m©÷, °ü¸®ºñ 5¸¸</a><br /> <a>¼¼¸í¿¡¼­µµ ÃæºÐÈ÷ »ç´Â Áý</a>
-									</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="top5-box">
-								<div class="top5-box-head top5-5"></div>
-								<div class="top5-box-body">
-									<p class="top5-box-body-tag-room">
-										<a>¿ÀÇÇ½ºÅÚ</a><a>¾È»ê</a><a>°ü½É999+</a>
-									</p>
-									<p class="top5-box-body-tag-price">
-										<a>999/99</a>
-									</p>
-									<p class="top5-box-body-tag-info">
-										<a>1Ãþ, 37m©÷, °ü¸®ºñ 5¸¸</a><br /> <a>¼¼¸í¿¡¼­µµ ÃæºÐÈ÷ »ç´Â Áý</a>
-									</p>
-								</div>
-							</div>
-						</li>
-					</ul>
+				<div id="search-b" class="animate__animated animate__fadeInUp animate__delay-2s">
+					<div id="search-b-ac">
+						<ul>
+							<li><a id="search-b-ac-fav">ì¸ê¸° ê²€ìƒ‰ì–´</a></li>
+							<li><a href="#">#ì•ˆì‚°</a></li>
+							<li><a href="#">#ë°°ê³§ì‹ ë„ì‹œ</a></li>
+							<li><a href="#">#ê³ ìž”ì‹ ë„ì‹œ</a></li>
+							<li><a href="#">#ì˜¤í”¼ìŠ¤í…”</a></li>
+							<li><a href="#">#ì •ì™•ì—­</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
