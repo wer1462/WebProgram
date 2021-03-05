@@ -8,15 +8,16 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" href="../css/top.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/bottom.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/map-page.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/map-page.css" type="text/css"/>
 	
-	<link rel="stylesheet" href="../css/all.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/all.css" type="text/css"/>
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<script  src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	
 <meta charset="utf-8">
 <title>map</title>
@@ -116,41 +117,90 @@
 		sendRequest("POST", url, fromMap, params);
  	}
  	
- 	
+ 	var num = 1;
 	function fromMap(){
 		if(xhr.readyState==4 && xhr.status==200) {
 			var obj=JSON.parse(xhr.responseText);
-			var pageCount = obj.count/obj.boardSize+(obj.count%obj.boardSize==0?0:1)
-			var pageBlock = 5;
-			var result = (Number(obj.currentPage)-1)/pageBlock;
-			var startPage = result*pageBlock+1;
-			var endPage = startPage+pageBlock-1;
 			
-			if(endPage> pageCount){
-				endPage = pageCount;
-			}
-			
-			var str = "";
-			if(startPage > pageBlock){
-				var str = "<a>[이전]</a>"
-			}
-			var str2 = "";
-			for(var i = startPage;i < endPage;i++){
-				str2 = "<a>["+i+"]</a>";
-			}
-			
-			var str3 = "";
-			if(endPage < pageCount){
-				str3 = "<a>[다음]</a>"
-			}
-			
+			for(var i = 0;i<10;i++){
+				var content = document.createElement("div");
+				content.setAttribute("class","list-text");
+				
+				var img = document.createElement("div");
+				img.setAttribute("class","list-images");
+				
+				var total = document.createElement("div");
+				total.setAttribute("class","map-list-b");
+				total.setAttribute("OnClick","location.href ='"+root+"/map/mapDetail.in?room_Num="+obj.map[i].room_Num+"'")
+				
+				var ul = document.createElement("ul");
+				 
+				var li = document.createElement("li");
+				li.setAttribute("class","list-text-1");
+
+				var a = document.createElement("a");
+				a.innerHTML = obj.map[i].room_Type;
+				li.appendChild(a);
+
+				var a2 = document.createElement("a");
+				a2.innerHTML = obj.map[i].room_Floor;
+				li.appendChild(a2);
+
+				var a3 = document.createElement("a");
+				a3.innerHTML = "관심 " + obj.map[i].room_LikeNum;
+				li.appendChild(a3);
+
+				var li2 = document.createElement("li");
+				li2.setAttribute("class","list-text-2");
+
+				var aa = document.createElement("a");
+				aa.innerHTML =obj.map[i].room_Price;
+				li2.appendChild(aa);
 
 
-			document.getElementById("aaaa").innerHTML = obj.map[0].room_Floor+","+obj.map[0].room_Size+","+obj.map[0].room_Manageprice;
+				var li3 = document.createElement("li");
+				li3.setAttribute("class","list-text-3");
 
+				var aaa = document.createElement("a");
+				aaa.innerHTML = obj.map[i].room_Floor+","+obj.map[i].room_Size+","+obj.map[i].room_Manageprice;
+				li3.appendChild(aaa);
+
+				ul.appendChild(li);
+				ul.appendChild(li2);
+				ul.appendChild(li3);
+
+				var div = document.getElementById("map-view-l");
+				var div2 = document.getElementById("map-list-view");
+				content.appendChild(ul);
+				total.appendChild(img);
+				total.appendChild(content);
+				div2.appendChild(total);
+				div.appendChild(div2);
+			}
 			
 		}
  	}
+	
+	$(document).ready(function(){
+	    //스크롤 발생 이벤트 처리
+	    $('#map-view-l').scroll(function(){
+	    	 var documentHeight  = $('#map-list-view').height();
+	         
+	         //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
+	         //세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
+	         var scrollHeight = $('#map-view-l').scrollTop()+$('#map-view-l').height();         
+
+	           
+	         if(scrollHeight >= documentHeight) { //문서의 맨끝에 도달했을때 내용 추가 
+	        	num++;
+	        	mapList(num);
+	         } 	
+	    });
+	});
+
+
+
+
 </script>
 
 <body id="wrap" onload="toServer('${root}');">
@@ -356,11 +406,11 @@
 						</select>
 					</div>
 				</div>
-				
-					<div class="map-list-b" OnClick="location.href ='#'">
+					<div id="map-list-view"></div>
+					<!-- <div class="map-list-b" OnClick="location.href ='#'">
 						<div class="list-images">
 						</div>
-						<div class="list-text">
+						<div class="list-text" id="list-text">
 							<ul>
 								<li class="list-text-1">
 									<a>오피스텔</a>
@@ -374,9 +424,9 @@
 									<a id="aaaa"></a><br/>
 									<a class="list-text-3-sub">💟신축1.5룸💟착한가격💟</a>
 								</li>
-							</ul>
+							</ul> 
 						</div>
-					</div>
+					</div> -->
 
 				<center>	
 					

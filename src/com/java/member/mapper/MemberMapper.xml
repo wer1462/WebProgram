@@ -12,4 +12,11 @@
 		insert into member values(SEQ_MEMBER_NUM.nextval,#{member_Id},#{member_Pwd},#{member_Name},#{MEMBER_BIRTH},#{member_Telephone},#{member_Email})
     
 	</insert>
+	
+	<select id="checkId" resultType="int">
+		select count(*) from member where "member_Id" = #{id}
+	</select>
+	
+	
+	
 </mapper>

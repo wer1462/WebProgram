@@ -25,7 +25,7 @@ public class MapListAjax implements Command {
 		logger.info(logMsg+"currentPage : "+currentPage);
 				
 		// 페이지당 출력할 게시물 수 : 10 [1] - 시작 번호 - 1 끝 번호 - 10 // [2] - 시작 번호 - 11 끝 번호 - 20
-		int boardSize =7;
+		int boardSize =10;
 		int startRow =(currentPage-1)*boardSize+1;
 		int endRow = currentPage*boardSize;
 		
@@ -58,8 +58,11 @@ public class MapListAjax implements Command {
 					map.put("room_Type", "오피스텔");
 				}
 				map.put("room_Floor", mapDto.getRoom_Floor().split("/")[0]);
-				map.put("room_Size", mapDto.getRoom_Size().split("/")[0]);
+				map.put("room_Size", mapDto.getRoom_Size());
 				map.put("room_Manageprice", mapDto.getRoom_Manageprice());
+				map.put("room_LikeNum", mapDto.getRoom_LikeNum());
+				map.put("room_Price", mapDto.getRoom_Price());
+				map.put("room_Num",mapDto.getRoom_Num());
 				jsonArray.add(map);
 			}
 			

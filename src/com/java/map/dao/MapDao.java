@@ -89,6 +89,19 @@ public class MapDao{
 
 		return valueList;
 	}
+
+	public MapDto selectDetail(int str) {
+		MapDto mapDto = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			mapDto = session.selectOne("mapDetail",str);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return mapDto;
+	}
 	
 
 }

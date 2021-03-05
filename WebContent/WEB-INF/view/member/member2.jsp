@@ -37,8 +37,7 @@
 						</ul>
 					</div>
 					
-					<form action="${root}/member/registerOk.in" method="post"
-						onsubmit="return registerForm(this);">
+					<form action="${root}/member/registerOk.in" method="post" onsubmit="return registerForm(this);">
 						<input type="hidden" name="member_Id" value="${member_Id }">
 						<input type="hidden" name="member_Pwd" value="${member_Pwd }">
 						<div class="login-m">

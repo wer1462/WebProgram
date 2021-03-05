@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>	
-<script type="text/javascript" src="${root }/javascript/page/check.js"></script>
+
 <body>
 <jsp:include page="/template/top.jsp"/>
 

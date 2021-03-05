@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html>
 <head>
 	
-	<link rel="stylesheet" href="../css/top.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/bottom.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/detail-page.css" type="text/css"/>
+	<link rel="stylesheet" href="${root}/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root}/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root}/css/detail-page.css" type="text/css"/>
 	
-	<link rel="stylesheet" href="../css/all.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/cell.css" type="text/css"/>
+	<link rel="stylesheet" href="${root}/css/all.css" type="text/css"/>
+	<link rel="stylesheet" href="${root}/css/cell.css" type="text/css"/>
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -23,22 +25,6 @@
 </head>
 
 <body id="wrap">
-	<div id="top">
-		<div id="top-nav">
-			<div id="top-nav-l">
-				<a href="#">로고</a>
-			</div>
-			<div id="top-nav-m">
-				<a href="#">방찾기<span><img src="../images/arrow.png"/></span></a>
-				<a href="#">방 내놓기<span><img src="../images/arrow.png"/></span></a>
-				<a href="#">관심 목록</a>
-				<a href="#">중개사 가입</a>
-			</div>
-			<div id="top-nav-r">
-				<a href="#">로그인·회원가입</a>
-			</div>
-		</div>
-	</div>
 	<div id="detail">
 		<div id="detail-t">
 			<div class="detail-t-box">
@@ -75,7 +61,7 @@
 								<ul>
 									<li>
 										<a>계약형태</a>
-										<div>월세</div>
+										<div>${mapDto.room_Type }</div>
 									</li>
 									<li>
 										<a>주용도</a>
@@ -91,7 +77,7 @@
 									</li>
 									<li>
 										<a>공용 관리비</a>
-										<div>7만원</div>
+										<div>${mapDto.room_Manageprice }</div>
 									</li>
 									<li>
 										<a>입주가능일</a>
@@ -125,7 +111,7 @@
 									</li>
 									<li>
 										<a>전용/공급면적</a>
-										<div>29.28/33㎡</div>
+										<div>${mapDto.room_Size }</div>
 									</li>
 									<li>
 										<a>방 수/욕실 수</a>

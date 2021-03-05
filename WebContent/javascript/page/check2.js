@@ -11,9 +11,6 @@
 
 
 
-
-
-
 function registerForm(obj) {
 	//유효성 검사
 	var num = /^[0-9]*$/;
@@ -26,8 +23,6 @@ function registerForm(obj) {
 	var re = /^[a-zA-Z0-9]{4,12}$/;  //아이디와 패스워드가 적합한지 검사할 정규식
 	// 직접입력시 이메일이 적합한지 검사할 정규식
 
-
-	
 	if (obj.member_Name.value == "") {
 		alert("이름을 입력해주세요.");
 		obj.member_Name.focus();
