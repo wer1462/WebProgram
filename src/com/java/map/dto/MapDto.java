@@ -3,14 +3,23 @@ package com.java.map.dto;
 import java.util.Date;
 
 public class MapDto {
+	
 	@Override
 	public String toString() {
-		return "MapDto [room_MapX=" + room_MapX + ", room_MapY=" + room_MapY + ", room_Num=" + room_Num
-				+ ", room_RentType=" + room_RentType + ", room_LikeNum=" + room_LikeNum + ", room_Manageprice="
-				+ room_Manageprice + ", room_Type=" + room_Type + ", room_Price=" + room_Price + "]";
+		return "MapDto [room_Num=" + room_Num + ", room_Type=" + room_Type + ", subRoom_Type=" + subRoom_Type
+				+ ", room_RentType=" + room_RentType + ", room_Price=" + room_Price + ", room_Manageprice="
+				+ room_Manageprice + ", room_Size=" + room_Size + ", room_Floor=" + room_Floor + ", room_Structure="
+				+ room_Structure + ", room_Parking=" + room_Parking + ", room_Options=" + room_Options
+				+ ", room_WriterName=" + room_WriterName + ", room_Telephone=" + room_Telephone + ", room_memberNum="
+				+ room_memberNum + ", room_MapX=" + room_MapX + ", room_MapY=" + room_MapY + ", room_viewNum="
+				+ room_viewNum + ", room_LikeNum=" + room_LikeNum + ", room_BadNum=" + room_BadNum + ", room_date="
+				+ room_date + ", ROOM_ANIMAL=" + ROOM_ANIMAL + ", ROOM_BUILTIN=" + ROOM_BUILTIN + ", ROOM_ELEVATOR="
+				+ ROOM_ELEVATOR + ", ROOM_BOILER=" + ROOM_BOILER + ", ROOM_VERANDA=" + ROOM_VERANDA + ", ROOM_MOVEIN="
+				+ ROOM_MOVEIN + ", ROOM_SECURITY=" + ROOM_SECURITY + ", ROOM_AGENT=" + ROOM_AGENT + "]";
 	}
 	private int room_Num;
 	private String room_Type;
+	private String subRoom_Type;
 	private String room_RentType;
 	private String room_Price;
 	private String room_Manageprice;
@@ -40,6 +49,15 @@ public class MapDto {
 	private String ROOM_MOVEIN;
 	private String ROOM_SECURITY;
 	private String ROOM_AGENT;
+	
+	
+	
+	public String getSubRoom_Type() {
+		return subRoom_Type;
+	}
+	public void setSubRoom_Type(String subRoom_Type) {
+		this.subRoom_Type = subRoom_Type;
+	}
 	public int getRoom_Num() {
 		return room_Num;
 	}

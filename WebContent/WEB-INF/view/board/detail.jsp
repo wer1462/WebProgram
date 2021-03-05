@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        
 <c:set var="root" value="${pageContext.request.contextPath}" />
+
 <!doctype html>
 <html>
 <head>
@@ -19,7 +23,9 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js" integrity="sha512-Nx/M3T/fWprNarYOrnl+gfWZ25YlZtSNmhjHeC0+2gCtyAdDFXqaORJBj1dC427zt3z/HwkUpPX+cxzonjUgrA==" crossorigin="anonymous"></script>
-	
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccef7d00e62b4082f4025e9586ca1c2a&libraries=clusterer"></script>
+		
 <meta charset="utf-8">
 <title>detail</title>
 </head>
@@ -29,9 +35,9 @@
 		<div id="detail-t">
 			<div class="detail-t-box">
 				<div class="detail-t-box-l">
-					<a>원룸</a><a>/</a>
-					<a>12평</a><a>/</a>
-					<a>월세 500·30</a><a>/</a>
+					<a>${mapDto.room_Type }</a><a>/</a>
+					<a>${mapDto.room_Size }</a><a>/</a>
+					<a>보증금·월세 ${mapDto.room_Price }</a><a>/</a>
 					<a>안산시 상록구 고잔동</a>
 				</div>
 				<div class="detail-t-box-r">
@@ -61,42 +67,44 @@
 								<ul>
 									<li>
 										<a>계약형태</a>
-										<div>${mapDto.room_Type }</div>
+										<div>${mapDto.subRoom_Type }</div>
 									</li>
-									<li>
-										<a>주용도</a>
-										<div>공동주택</div>
-									</li>
-									<li>
-										<a>보증금</a>
-										<div>500 만/원</div>
-									</li>
-									<li>
-										<a>월세</a>
-										<div>30 만/원</div>
-									</li>
+									<c:choose>
+
+										<c:when test="${mapDto.room_RentType == '월세'}"> 
+											<li>
+												<a>보증금/월세</a>
+												<div>${mapDto.room_Price }</div>
+											</li> 
+										</c:when>
+										
+										<c:when test="${mapDto.room_RentType == '전세'}">
+											<li>
+												<a>전세</a>
+												<div>${mapDto.room_Price }</div>
+											</li> 
+										</c:when>
+										
+										<c:when test="${mapDto.room_RentType == '매매'}">
+											<li>
+												<a>매매</a>
+												<div>${mapDto.room_Price }</div>
+											</li> 
+										</c:when>
+									</c:choose>
+
+									
 									<li>
 										<a>공용 관리비</a>
 										<div>${mapDto.room_Manageprice }</div>
 									</li>
 									<li>
 										<a>입주가능일</a>
-										<div>즉시 입주</div>
-									</li>
-									<li>
-										<a>사용승인일</a>
-										<div>2002.08.22</div>
+										<div>${mapDto.ROOM_MOVEIN }</div>
 									</li>
 									<li>
 										<a>최초등록일</a>
-										<div>2021.02.10</div>
-									</li>
-									<li>
-										<a>입주가능일</a>
-										<div>2021.03.01</div>
-									</li>
-									<li>
-										<div></div>
+										<div><fmt:formatDate pattern="yyyy-MM-dd" value="${ mapDto.room_date}"/></div>
 									</li>
 								</ul>
 						</div>
@@ -107,7 +115,7 @@
 								<ul>
 									<li>
 										<a>해당층/건물층</a>
-										<div>9층/9층</div>
+										<div>${mapDto.room_Floor }</div>
 									</li>
 									<li>
 										<a>전용/공급면적</a>
@@ -115,35 +123,36 @@
 									</li>
 									<li>
 										<a>방 수/욕실 수</a>
-										<div>2개/1개</div>
+										<div>${mapDto.room_Structure }</div>
 									</li>
 									<li>
 										<a>난방종류</a>
-										<div>개별난방</div>
+										<div>${mapDto.ROOM_BOILER }</div>
 									</li>
 									<li>
 										<a>빌트인</a>
-										<div>아님</div>
-									</li>
-									<li>
-										<a>건물 주차수</a>
-										<div>총 0대</div>
+										<div>${mapDto.ROOM_BUILTIN }</div>
 									</li>
 									<li>
 										<a>세대당 주차수</a>
-										<div>0대</div>
+										<div>${mapDto.room_Parking }</div>
 									</li>
-									<li>
-										<a>엘리베이터</a>
-										<div>없음</div>
-									</li>
-									<li>
-										<a>반려동물</a>
-										<div>불가능</div>
-									</li>
+									<c:if test="${mapDto.ROOM_ELEVATOR !=  null}">
+										<li>
+											<a>엘리베이터</a>
+											<div>${mapDto.ROOM_ELEVATOR}</div>
+										</li>
+									</c:if>	
+									<c:if test="${mapDto.ROOM_ANIMAL !=  null}">
+										<li>
+											<a>반려동물</a>
+											<div>${mapDto.ROOM_ANIMAL }</div>
+										</li>
+									</c:if>							
+									
 									<li>
 										<a>베란다/발코니</a>
-										<div>없음</div>
+										<div>${mapDto.ROOM_VERANDA }</div>
 									</li>
 								</ul>
 						</div>
@@ -157,119 +166,155 @@
 					<div class="detail-tag-l">
 						<div class="tag-info-1">
 							<a class="info-t info-t-1">기본옵션</a>
-							<div class="option-list-r">
-								<div class="option-items">
-									<div class="option-aircon option-icon-r"></div>
-									<a>에어컨</a>
-								</div>
-								<div class="option-items">
-									<div class="option-bidet option-icon-r"></div>
-									<a>비데</a>
-								</div>
-								<div class="option-items">
-									<div class="option-closet option-icon-r"></div>
-									<a>옷장</a>
-								</div>
-								<div class="option-items">
-									<div class="option-desk option-icon-r"></div>
-									<a>책상</a>
-								</div>
-							</div>
-							<div class="option-list-r">
-								<div class="option-items">
-									<div class="option-doorlock option-icon-r"></div>
-									<a>전자도어락</a>
-								</div>
-								<div class="option-items">
-									<div class="option-induction option-icon-r"></div>
-									<a>인덕션</a>
-								</div>
-								<div class="option-items">
-									<div class="option-laundry option-icon-r"></div>
-									<a>세탁기</a>
-								</div>
-								<div class="option-items">
-									<div class="option-micerowave option-icon-r"></div>
-									<a>전자레인지</a>
-								</div>
-							</div>
-							<div class="option-list-r">
-								<div class="option-items">
-									<div class="option-refrig option-icon-r"></div>
-									<a>냉장고</a>
-								</div>
-								<div class="option-items">
-									<div class="option-shoes option-icon-r"></div>
-									<a>신발장</a>
-								</div>
-								<div class="option-items">
-									<div class="option-gas option-icon-r"></div>
-									<a>가스레인지</a>
-								</div>
-								<div class="option-items">
-									<div class="option-bed option-icon-r"></div>
-									<a>침대</a>
-								</div>
-							</div>
-							<div class="option-list-r">
-								<div class="option-items">
-									<div class="option-tv option-icon-r"></div>
-									<a>TV</a>
-								</div>
-								<div class="option-items">
-									<div class="option-x option-icon-r"></div>
-									<a></a>
-								</div>
-								<div class="option-items">
-									<div class="option-x option-icon-r"></div>
-									<a></a>
-								</div>
-								<div class="option-items">
-									<div class="option-x option-icon-r"></div>
-									<a></a>
-								</div>
-							</div>
+							
+								
+								<c:forEach var="a" begin="0" end="${optionlen/4}">
+								<div class="option-list-r">
+									<c:forEach var="aa" begin="${a*4 }" end="${(a*4)+3}">
+									<c:choose>
+										<c:when test="${option[aa] == '에어컨'}"> 
+											<div class="option-items">
+												<div class="option-aircon option-icon-r"></div>
+												<a>에어컨</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '비데'}"> 
+											<div class="option-items">
+												<div class="option-bidet option-icon-r"></div>
+												<a>비데</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '옷장'}"> 
+											<div class="option-items">
+												<div class="option-closet option-icon-r"></div>
+												<a>옷장</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '책상'}"> 
+											<div class="option-items">
+												<div class="option-desk option-icon-r"></div>
+												<a>책상</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '전자도어락'}"> 
+											<div class="option-items">
+												<div class="option-doorlock option-icon-r"></div>
+												<a>전자도어락</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '인덕션'}"> 
+											<div class="option-items">
+												<div class="option-induction option-icon-r"></div>
+												<a>인덕션</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '세탁기'}"> 
+											<div class="option-items">
+												<div class="option-laundry option-icon-r"></div>
+												<a>세탁기</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '전자레인지'}"> 
+											<div class="option-items">
+												<div class="option-micerowave option-icon-r"></div>
+												<a>전자레인지</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '냉장고'}"> 
+											<div class="option-items">
+												<div class="option-refrig option-icon-r"></div>
+												<a>냉장고</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '신발장'}"> 
+											<div class="option-items">
+												<div class="option-shoes option-icon-r"></div>
+												<a>신발장</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '가스레인지'}"> 
+											<div class="option-items">
+												<div class="option-gas option-icon-r"></div>
+												<a>가스레인지</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == '침대'}"> 
+											<div class="option-items">
+												<div class="option-bed option-icon-r"></div>
+												<a>침대</a>
+											</div>
+										</c:when>
+										<c:when test="${option[aa] == 'TV'}"> 
+											<div class="option-items">
+												<div class="option-tv option-icon-r"></div>
+												<a>TV</a>
+											</div>
+										</c:when>
+										
+									</c:choose>
+									</c:forEach>
+									</div>
+								</c:forEach>
+						
+								
+								
+					
+
 						</div>
 					</div>
 					<div class="detail-tag-r">
 						<div class="tag-info-r">
 							<a class="info-t info-t-1">보안/안전시설</a>
+							<c:forEach var="a" begin="0" end="${securitylen/4}">
 								<div class="option-list-r">
-									<div class="option-items">
-										<div class="option-cardkey option-icon-r"></div>
-										<a>카드키</a>
+									<c:forEach var="aa" begin="${a*4 }" end="${(a*4)+3}">
+									<c:choose>
+										<c:when test="${security[aa] == '카드키'}"> 
+											<div class="option-items">
+												<div class="option-cardkey option-icon-r"></div>
+												<a>카드키</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == 'CCTV'}"> 
+											<div class="option-items">
+												<div class="option-cctv option-icon-r"></div>
+												<a>CCTV</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == '공동현관'}"> 
+											<div class="option-items">
+												<div class="option-entrance option-icon-r"></div>
+												<a>공동현관</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == '화재경보기'}"> 
+											<div class="option-items">
+												<div class="option-fire option-icon-r"></div>
+												<a>화재경보기</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == '인터폰'}"> 
+											<div class="option-items">
+												<div class="option-intercom option-icon-r"></div>
+												<a>인터폰</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == '비디오폰'}"> 
+											<div class="option-items">
+												<div class="option-videophone option-icon-r"></div>
+												<a>비디오폰</a>
+											</div>
+										</c:when>
+										<c:when test="${security[aa] == '방범창'}"> 
+											<div class="option-items">
+												<div class="option-window option-icon-r"></div>
+												<a>방범창</a>
+											</div>
+										</c:when>
+									</c:choose>
+									</c:forEach>
 									</div>
-									<div class="option-items">
-										<div class="option-cctv option-icon-r"></div>
-										<a>CCTV</a>
-									</div>
-									<div class="option-items">
-										<div class="option-entrance option-icon-r"></div>
-										<a>공동현관</a>
-									</div>
-									<div class="option-items">
-										<div class="option-fire option-icon-r"></div>
-										<a>화재경보기</a>
-									</div>
-								</div>
-								<div class="option-list-r">
-									<div class="option-items">
-										<div class="option-intercom option-icon-r"></div>
-										<a>인터폰</a>
-									</div>
-									<div class="option-items">
-										<div class="option-videophone option-icon-r"></div>
-										<a>비디오폰</a>
-									</div>
-									<div class="option-items">
-										<div class="option-window option-icon-r"></div>
-										<a>방범창</a>
-									</div>
-									<div class="option-items">
-										<div class="option-x option-icon-r"></div>
-										<a></a>
-									</div>
-								</div>
+								</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -280,8 +325,34 @@
 		</div>
 		<div id="detail-map">
 			<a class="info-t info-t-1">위치 및 주변시설</a>
-			<div class="detail-mapbox">
+			<div class="map" id="map" style="width:100%;height:400px;">
 			</div>
+			<script type="text/javascript">
+				var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+				var x = ${x};
+				var y = ${y};
+				
+		   		mapOption = { 
+		        	center: new kakao.maps.LatLng(${y},${x} ), // 지도의 중심좌표
+		        	level: 3, // 지도의 확대 레벨
+		        	disableDoubleClick: false,
+		        	disableDoubleClickZoom: false,
+		        	scrollwheel: false,
+		        	draggable: false
+		    	};
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				map.setKeyboardShortcuts(false);
+				
+				var markerPosition  = new kakao.maps.LatLng(${y},${x} ); 
+
+				// 마커를 생성합니다
+				var marker = new kakao.maps.Marker({
+				    position: markerPosition
+				});
+
+				// 마커가 지도 위에 표시되도록 설정합니다
+				marker.setMap(map);
+			</script>
 		</div>
 		<div id="detail-seller">
 			<a class="info-t info-t-1">판매자 정보</a>

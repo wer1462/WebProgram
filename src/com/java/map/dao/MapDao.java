@@ -90,9 +90,22 @@ public class MapDao{
 
 	public MapDto selectDetail(int str) {
 		MapDto mapDto = null;
+		String room = "";
 		try {
 			session = sqlSessionFactory.openSession();
 			mapDto = session.selectOne("mapDetail",str);
+			if(mapDto.getRoom_Type().indexOf("원룸") != -1) {
+				room = "원룸";
+			}else if(mapDto.getRoom_Type().indexOf("투룸") != -1) {
+				room = "투룸";
+			}
+			else if(mapDto.getRoom_Type().indexOf("쓰리룸") != -1) {
+				room = "쓰리룸";
+			}
+			else if(mapDto.getRoom_Type().indexOf("오피스텔") != -1) {
+				room = "오피스텔";
+			}
+			mapDto.setSubRoom_Type(room);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
