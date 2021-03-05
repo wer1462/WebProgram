@@ -18,7 +18,7 @@ public class MapTest implements Command {
 
 	@Override
 	public String actionDo(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		List<MapDto> mapList = MapDao.getInstance().selectAll();
+		List<MapDto> mapList =	MapDao.getInstance().selectAll();
 		
 		
 		JSONArray jsonArray = new JSONArray();

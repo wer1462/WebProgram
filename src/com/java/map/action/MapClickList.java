@@ -17,7 +17,7 @@ public class MapClickList implements Command {
 		String[] arr = request.getParameterValues("list")[0].split(",");
 		System.out.println(arr[0]);
 		
-		List<MapDto> mapList = MapDao.getInstance().selectAll(arr);
+		List<MapDto> mapList = MapDao.getInstance().selectAllList(arr);
 		System.out.println(mapList.get(0).toString());
 		
 		return null;

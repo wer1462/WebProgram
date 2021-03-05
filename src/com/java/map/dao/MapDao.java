@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.java.command.Command;
 import com.java.map.dto.MapDto;
 import com.java.myBatis.SqlManager;
 
@@ -38,7 +36,7 @@ public class MapDao{
 		return mapList;
 	}
 
-	public List<MapDto> selectAll(String[] arr) {
+	public List<MapDto> selectAllList(String[] arr) {
 		List<MapDto> mapList = new ArrayList<>();
 		System.out.println(arr[0]);
 		try {
