@@ -95,6 +95,7 @@
 			mapList(1);
 		}			
 	} 
+
  		
  	function addMarker(position,obj) {    
 	    // 마커를 생성합니다
@@ -229,20 +230,12 @@
 										<label for="room-1"><span></span>원룸</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="room-2" name="room" disabled/>
-										<label for="room-2"><span></span>투룸·쓰리룸(준비중)</label>
+										<input type="checkbox" id="room-2" name="room"/>
+										<label for="room-2"><span></span>투룸·쓰리룸</label>
 									</div>
 									<div class="hover-item">
 										<input type="checkbox" id="room-3" name="room"/>
 										<label for="room-3"><span></span>오피스텔</label>
-									</div>
-									<div class="hover-item">
-										<input type="checkbox" id="room-4" name="room" disabled/>
-										<label for="room-4"><span></span>도시형생활주택(준비중)</label>
-									</div>
-									<div class="hover-item">
-										<input type="checkbox" id="room-5" name="room" disabled/>
-										<label for="room-5"><span></span>공공임대주택(준비중)</label>
 									</div>
 								</div>
 							</div>
@@ -260,12 +253,12 @@
 										<label for="sell-1"><span></span>월세</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="sell-2" name="sell" disabled/>
-										<label for="sell-2"><span></span>전세(준비중)</label>
+										<input type="checkbox" id="sell-2" name="sell"/>
+										<label for="sell-2"><span></span>전세</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="sell-3" name="sell" disabled/>
-										<label for="sell-3"><span></span>매매(준비중)</label>
+										<input type="checkbox" id="sell-3" name="sell" />
+										<label for="sell-3"><span></span>매매</label>
 									</div>
 								</div>
 							</div>
@@ -359,10 +352,6 @@
 											<input type="checkbox" id="plus-4" name="plus"/>
 											<label for="plus-4"><span></span>엘리베이터</label>
 										</div>
-										<div class="hover-item">
-											<input type="checkbox" id="plus-5" name="plus"/>
-											<label for="plus-5"><span></span>보안/안전시설</label>
-										</div>
 									</div>
 									<div class="hover-item-box-r">
 										<div class="hover-item">
@@ -374,12 +363,12 @@
 											<label for="plus-7"><span></span>반려동물</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-8" name="plus" disabled/>
-											<label for="plus-8"><span></span>전세자금대출(준비중)</label>
-										</div>
-										<div class="hover-item">
 											<input type="checkbox" id="plus-9" name="plus"/>
 											<label for="plus-9"><span></span>빌트인</label>
+										</div>
+										<div class="hover-item">
+											<input type="checkbox" id="plus-5" name="plus"/>
+											<label for="plus-5"><span></span>보안/안전시설</label>
 										</div>
 									</div>
 								</div>

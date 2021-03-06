@@ -1,5 +1,7 @@
 package com.java.map.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,6 +29,8 @@ public class MapDetail implements Command {
 		request.setAttribute("y", mapDto.getRoom_MapY());
 		System.out.println(mapDto.toString());
 		
+		List<MapDto> listDto = MapDao.getInstance().detailList(mapDto.getRoom_Num(),mapDto.getRoom_memberNum());
+		request.setAttribute("Dtolist", listDto);
 		return "/WEB-INF/view/board/detail.jsp";
 	}
 

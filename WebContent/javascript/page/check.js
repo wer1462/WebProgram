@@ -118,7 +118,7 @@ function registerForm(obj) {
 		obj.bddd.focus();
 		return false;
 	}
-	if (obj.member_Email.value == "") {
+	if (obj.member_Email.value=="") {
 		alert("이메일을 입력해 주세요");
 		obj.member_Email.focus();
 		return false;

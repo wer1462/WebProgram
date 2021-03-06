@@ -25,7 +25,21 @@
     	]]>
     </select>
     
+    <select id="mapDetailList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
+    	<![CDATA[
+    		select "room_Price","room_Num", "room_LikeNum","room_Type","room_Floor","room_Size","room_Manageprice" from (select rownum as rnum, a.* 
+    		from (select * from room order by "room_Num" desc) a) b 
+    		where b.rnum >= #{startRow} and b.rnum<=#{endRow} and "room_memberNum" = #{room_memberNum}
+    	]]>
+    </select>
     
+    <select id="randomNum" resultType="int">
+		 select round(dbms_random.value(1,#{num})) from dual
+	</select>
+	
+	<select id="countNum" parameterType="java.util.HashMap" resultType="int">
+		 select count(*) from room where  "room_memberNum" = #{room_memberNum} and "room_Num" != #{room_Num}
+	</select>
     
     <select id="mapDetail" resultType="com.java.map.dto.MapDto">
 		select * from room where "room_Num" = #{str}

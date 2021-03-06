@@ -37,8 +37,7 @@
 				<div class="detail-t-box-l">
 					<a>${mapDto.room_Type }</a><a>/</a>
 					<a>${mapDto.room_Size }</a><a>/</a>
-					<a>보증금·월세 ${mapDto.room_Price }</a><a>/</a>
-					<a>안산시 상록구 고잔동</a>
+					<a>보증금·월세 ${mapDto.room_Price }</a>
 				</div>
 				<div class="detail-t-box-r">
 					<!-- <button></button> -->
@@ -361,8 +360,8 @@
 					<div class="seller-name">
 						<a></a>
 						<ul>
-							<li>미남공인중개사사무소</li>
-							<li><span>이원희</span></li>
+							<li>${mapDto.ROOM_AGENT }</li>
+							<li><span>${mapDto.room_WriterName }</span></li>
 						</ul>
 					</div>
 				</div>
@@ -388,55 +387,20 @@
 		</div>
 		<div id="detail-seller-other">
 			<div class="other-box">
-				<div class="other-item" OnClick="location.href ='#'">
-					<div></div>
-					<ul>
-						<li>
-							<a>원룸</a>
-							<a>7층</a>
-							<a>관심 999+</a>
-						</li>
-						<li>666/66</li>
-						<li>9층, 99평, 관리비 99만</li>
-					</ul>
-				</div>
-				<div class="other-item" OnClick="location.href ='#'">
-					<div></div>
-					<ul>
-						<li>
-							<a>원룸</a>
-							<a>7층</a>
-							<a>관심 999+</a>
-						</li>
-						<li>666/66</li>
-						<li>9층, 99평, 관리비 99만</li>
-					</ul>
-				</div>
-				<div class="other-item" OnClick="location.href ='#'">
-					<div></div>
-					<ul>
-						<li>
-							<a>원룸</a>
-							<a>7층</a>
-							<a>관심 999+</a>
-						</li>
-						<li>666/66</li>
-						<li>9층, 99평, 관리비 99만</li>
-					</ul>
-				</div>
-				<div class="other-item" OnClick="location.href ='#'">
-					<div></div>
-					<ul>
-						<li>
-							<a>원룸</a>
-							<a>7층</a>
-							<a>관심 999+</a>
-						</li>
-						<li>666/66</li>
-						<li>9층, 99평, 관리비 99만</li>
-					</ul>
-				</div>
-				
+			<c:forEach var="listDto" items="${Dtolist}">
+					<div class="other-item" OnClick="location.href ='${root}/map/mapDetail.in?room_Num=${listDto.room_Num}'">
+						<div></div>
+						<ul>
+							<li>
+								<a>${listDto.subRoom_Type }</a>
+								<a>${listDto.room_Floor }</a>
+								<a>관심 ${listDto.room_LikeNum }</a>
+							</li>
+							<li>${listDto.room_Price }</li>
+							<li>${listDto.room_Floor }, ${listDto.room_Size }, 관리비 ${listDto.room_Manageprice }</li>
+						</ul>
+					</div>	
+				</c:forEach>
 			</div>
 		</div>
 	</div>
