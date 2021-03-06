@@ -4,8 +4,32 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.map.mapper.MapMapper">
-	<select id="mapList" resultType="com.java.map.dto.MapDto">
+	<select id="mapList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
 		select "room_MapX","room_MapY","room_Num" from room
+		<where>
+			<if test="room1 != null">
+					"room_Type" LIKE '%' || #{room1} || '%' 
+			</if>
+			<if test="room2 != null">
+					or "room_Type"  LIKE '%' || #{room2} || '%' 
+			</if>
+			<if test="room3 != null">
+					or "room_Type"  LIKE '%' || #{room3} || '%' 
+			</if>
+			<if test="room4 != null">
+					or "room_Type"  LIKE '%' || #{room4} || '%' 
+			</if>
+			
+			<if test="sell1 != null">
+					or "room_RentType"  LIKE '%' || #{sell1} || '%' 
+			</if>
+			<if test="sell2 != null">
+					or "room_RentType"  LIKE '%' || #{sell2} || '%' 
+			</if>
+			<if test="sell3 != null">
+					or "room_RentType"  LIKE '%' || #{sell3} || '%' 
+			</if>
+		</where>
 	</select>
 	
 	<select id="mapClickList" resultType="com.java.map.dto.MapDto">
@@ -42,7 +66,7 @@
 	</select>
     
     <select id="mapDetail" resultType="com.java.map.dto.MapDto">
-		select * from room where "room_Num" = #{str}
+		select * from room where "room_Num" = #{str} 
 	</select>
 	
     

@@ -34,9 +34,165 @@
 	var root = "";
 	
  	function toServer(root2) {
+ 		clusterer.clear();
+ 		markers = [];
 		root = root2;
 		var url = root + "/map/list.in";
-		sendRequest("POST", url, fromServer, null);
+		var obj = document.getElementById("obj");
+		var params = "";
+		//alert(obj.room1.checked);
+		if(obj.room1.checked){
+			params += "room1="+obj.room1.value;
+		}
+		if(obj.room2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room2="+obj.room2.value;
+		}
+		if(obj.room3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room3="+obj.room3.value;
+		}
+		if(obj.room4.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room4="+obj.room4.value;
+		}
+		
+		if(obj.sell1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "sell1="+obj.sell1.value;
+		}
+		if(obj.sell2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "sell2="+obj.sell2.value;
+		}
+		if(obj.sell3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "sell3="+obj.sell3.value;
+		}
+		
+		
+		if(obj.price1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price1="+obj.price1.value;
+		}
+		if(obj.price2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price2="+obj.price2.value;
+		}
+		if(obj.price3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price3="+obj.price3.value;
+		}
+		
+		
+		if(obj.price_room1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price_room1="+obj.price_room1.value;
+		}
+		if(obj.price_room2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price_room2="+obj.price_room2.value;
+		}
+		if(obj.price_room3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "price_room3="+obj.price_room3.value;
+		}
+		
+		if(obj.size_room1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "size_room1="+obj.size_room1.value;
+		}
+		if(obj.size_room2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "size_room2="+obj.size_room2.value;
+		}
+		if(obj.size_room3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "size_room3="+obj.size_room3.value;
+		}
+		
+		
+		if(obj.plus1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus1="+obj.plus1.value;
+		}
+		if(obj.plus2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus2="+obj.plus2.value;
+		}
+		if(obj.plus3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus3="+obj.plus3.value;
+		}
+		if(obj.plus4.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus4="+obj.plus4.value;
+		}
+		if(obj.plus5.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus5="+obj.plus5.value;
+		}
+		if(obj.plus6.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus6="+obj.plus6.value;
+		}
+		if(obj.plus7.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus7="+obj.plus7.value;
+		}
+		if(obj.plus8.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus8="+obj.plus8.value;
+		}
+		
+				
+		sendRequest("POST", url, fromServer, params);
 		
 	}
  	
@@ -53,44 +209,24 @@
 	}
  	
  	var markers = [];
- 	function fro() {
-		if(xhr.readyState==4 && xhr.status==200) {
-			
-		}
- 	}
  		
  	function fromServer() {
 		if(xhr.readyState==4 && xhr.status==200) {
 			var obj=JSON.parse(xhr.responseText);	
- 	
-			var container = document.getElementById('map-view-r');		
 	
-			var map = new kakao.maps.Map(container, options());
-			map.setMaxLevel(9);
-				
 			for (var i = 0; i < obj.map.length; i++) {
 				addMarker(new kakao.maps.LatLng(obj.map[i].y, obj.map[i].x),obj.map[i]);
 			}
 			
-			var clusterer = new kakao.maps.MarkerClusterer({
-		        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-		        gridSize: 50,
-		        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-		        minLevel: 1, // 클러스터 할 최소 지도 레벨 
-		        disableClickZoom: true,
-		        minClusterSize:1,
-		        markers: markers
-		        
-		    });
-			/* clusterer.addMarkers(markers); */
+		
+			clusterer.addMarkers(markers);
 		
 			kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
 		        // 현재 지도 레벨에서 1레벨 확대한 레벨
 		        toMapServer(cluster.getSize(),cluster.getMarkers());
 		        var level = map.getLevel()-1;
 		        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-		        map.setLevel(level, {anchor: cluster.getCenter()});
-		      
+		        map.setLevel(level, {anchor: cluster.getCenter()});		      
 		    });
 			mapList(1);
 		}			
@@ -106,7 +242,6 @@
 	
 	    // 마커가 지도 위에 표시되도록 설정합니다
 	    //marker.setMap(map);
-	    
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);    
 	}
@@ -199,7 +334,16 @@
 	    });
 	});
 
-
+		
+	function searchList(){
+		var obj = document.getElementById("obj");
+		if(obj.room1.checked){
+			alert("ho");
+		}
+		
+		
+		
+	}
 
 
 </script>
@@ -217,7 +361,7 @@
 		</div>
 		<div id="map-menu-r">
 			<div class="map-select">
-				<form>
+				<form name = "obj" id = "obj">
 					<div class="select-box">
 						<button class="select-box-ac" disabled>원룸·오피스텔</button>
 						<div class="select-box-hover">
@@ -226,16 +370,20 @@
 								<a class="select-box-hover-ac-sub">중복선택이 가능합니다.</a>
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="checkbox" id="room-1" name="room"/>
+										<input type="checkbox" id="room-1" name="room1" onchange="toServer('${root}')" value="원룸"/>
 										<label for="room-1"><span></span>원룸</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="room-2" name="room"/>
-										<label for="room-2"><span></span>투룸·쓰리룸</label>
+										<input type="checkbox" id="room-2" name="room2" onchange="toServer('${root}')" value="투룸"/>
+										<label for="room-2"><span></span>투룸</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="room-3" name="room"/>
-										<label for="room-3"><span></span>오피스텔</label>
+										<input type="checkbox" id="room-3" name="room3" onchange="toServer('${root}')" value="쓰리룸"/>
+										<label for="room-3"><span></span>쓰리룸</label>
+									</div>
+									<div class="hover-item">
+										<input type="checkbox" id="room-4" name="room4" onchange="toServer('${root}')" value="오피스텔"/>
+										<label for="room-4"><span></span>오피스텔</label>
 									</div>
 								</div>
 							</div>
@@ -249,15 +397,15 @@
 								<a class="select-box-hover-ac-sub">중복선택이 가능합니다.</a>
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="checkbox" id="sell-1" name="sell"/>
+										<input type="checkbox" id="sell-1" name="sell1" onchange="toServer('${root}')" value="월세"/>
 										<label for="sell-1"><span></span>월세</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="sell-2" name="sell"/>
+										<input type="checkbox" id="sell-2" name="sell2" onchange="toServer('${root}')" value="전세"/>
 										<label for="sell-2"><span></span>전세</label>
 									</div>
 									<div class="hover-item">
-										<input type="checkbox" id="sell-3" name="sell" />
+										<input type="checkbox" id="sell-3" name="sell3" onchange="toServer('${root}')" value="매매"/>
 										<label for="sell-3"><span></span>매매</label>
 									</div>
 								</div>
@@ -272,15 +420,15 @@
 								<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="radio" id="price-1" name="price"/>
+										<input type="radio" id="price-1" name="price1"/>
 										<label for="price-1"><span></span>500 이상</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="price-2" name="price"/>
+										<input type="radio" id="price-2" name="price2"/>
 										<label for="price-2"><span></span>500 이하</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="price-3" name="price"/>
+										<input type="radio" id="price-3" name="price3"/>
 										<label for="price-3"><span></span>상관없음</label>
 									</div>
 								</div>
@@ -289,15 +437,15 @@
 									<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 									<div class="hover-item-box">
 										<div class="hover-item">
-											<input type="radio" id="price-room-1" name="price-room"/>
+											<input type="radio" id="price-room-1" name="price_room1"/>
 											<label for="price-room-1"><span></span>50 이상</label>
 										</div>
 										<div class="hover-item">
-											<input type="radio" id="price-room-2" name="price-room"/>
+											<input type="radio" id="price-room-2" name="price_room2"/>
 											<label for="price-room-2"><span></span>50 이하</label>
 										</div>
 										<div class="hover-item">
-											<input type="radio" id="price-room-3" name="price-room"/>
+											<input type="radio" id="price-room-3" name="price_room3"/>
 											<label for="price-room-3"><span></span>상관없음</label>
 										</div>
 									</div>
@@ -313,15 +461,15 @@
 								<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="radio" id="size-room-1" name="size-room"/>
+										<input type="radio" id="size-room-1" name="size_room1"/>
 										<label for="size-room-1"><span></span>33m²(10평) 이상</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="size-room-2" name="size-room"/>
+										<input type="radio" id="size-room-2" name="size_room2"/>
 										<label for="size-room-2"><span></span>33m²(10평) 이하</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="size-room-3" name="size-room"/>
+										<input type="radio" id="size-room-3" name="size_room3"/>
 										<label for="size-room-3"><span></span>상관없음</label>
 									</div>
 								</div>
@@ -337,37 +485,37 @@
 								<div class="hover-item-box hover-item-box-plus">
 									<div class="hover-item-box-l">
 										<div class="hover-item">
-											<input type="checkbox" id="plus-1" name="plus"/>
+											<input type="checkbox" id="plus-1" name="plus1"/>
 											<label for="plus-1"><span></span>주차가능</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-2" name="plus"/>
+											<input type="checkbox" id="plus-2" name="plus2"/>
 											<label for="plus-2"><span></span>베란다/발코니</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-3" name="plus"/>
+											<input type="checkbox" id="plus-3" name="plus3"/>
 											<label for="plus-3"><span></span>단기임대</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-4" name="plus"/>
+											<input type="checkbox" id="plus-4" name="plus4"/>
 											<label for="plus-4"><span></span>엘리베이터</label>
 										</div>
 									</div>
 									<div class="hover-item-box-r">
 										<div class="hover-item">
-											<input type="checkbox" id="plus-6" name="plus"/>
+											<input type="checkbox" id="plus-6" name="plus5"/>
 											<label for="plus-6"><span></span>풀옵션</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-7" name="plus"/>
+											<input type="checkbox" id="plus-7" name="plus6"/>
 											<label for="plus-7"><span></span>반려동물</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-9" name="plus"/>
+											<input type="checkbox" id="plus-9" name="plus7"/>
 											<label for="plus-9"><span></span>빌트인</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-5" name="plus"/>
+											<input type="checkbox" id="plus-5" name="plus8"/>
 											<label for="plus-5"><span></span>보안/안전시설</label>
 										</div>
 									</div>
@@ -425,5 +573,20 @@
 		<div id="map-view-r">
 		</div>
 	</div>
+	<script type="text/javascript">
+		var container = document.getElementById('map-view-r');		
+		
+		var map = new kakao.maps.Map(container, options());
+		map.setMaxLevel(9);
+		
+		var clusterer = new kakao.maps.MarkerClusterer({
+	        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+	        gridSize: 50,
+	        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+	        minLevel: 1, // 클러스터 할 최소 지도 레벨 
+	        disableClickZoom: true,
+	        minClusterSize:1	        
+	    });
+	</script>
 </body>
 </html>

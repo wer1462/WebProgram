@@ -22,12 +22,52 @@ public class MapDao{
 		return instance;
 	}
 	
-	public List<MapDto> selectAll() {
+	public List<MapDto> selectAll(String room1, String room2, String room3,String room4, String sell1, String sell2, String sell3, String price1, String price2, String price3, String price_room1, String price_room2, String price_room3, String size_room1, String size_room2, String size_room3, String plus1, String plus2, String plus3, String plus4, String plus5, String plus6, String plus7, String plus8) {
 		List<MapDto> mapList = null;
+		HashMap<String,String> hMap = new HashMap<String, String>();
+		hMap.put("room1", room1);
+		System.out.println(room1);
+		hMap.put("room2", room2);
+		System.out.println(room2);
+		hMap.put("room3", room3);
+		System.out.println(room3);
+		hMap.put("room4", room4);
+		System.out.println(room4);
+		
+		hMap.put("sell1", sell1);
+		hMap.put("sell2", sell2);
+		hMap.put("sell3", sell3);
+		if(price1 != null) {
+			hMap.put("price1", price1.split(" ")[0]);
+		}
+		if(price2 != null) {
+			hMap.put("price2", price2.split(" ")[0]);
+		}
+		
+
+
+		hMap.put("price_room1", price_room1);
+		hMap.put("price_room2", price_room2);
+		
+		hMap.put("size_room1", size_room1);
+		hMap.put("size_room2", size_room2);
+		
+		hMap.put("plus1", plus1);
+		hMap.put("plus2", plus2);
+		hMap.put("plus3", plus3);
+		hMap.put("plus4", plus4);
+		hMap.put("plus5", plus5);
+		hMap.put("plus6", plus6);
+		hMap.put("plus7", plus7);
+		hMap.put("plus8", plus8);
+		
+		
+		
+		
 		
 		try {
 			session = sqlSessionFactory.openSession();
-			mapList = session.selectList("mapList");
+			mapList = session.selectList("mapList",hMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
