@@ -24,11 +24,11 @@
 			<div class="like-t-box">
 				<div class="like-t-box-l">
 					<a class="member-normal">일반회원</a>
-					<a class="member-prime">프라임회원</a>
+					<a class="member-prime"><div></div>프라임회원</a>
 					<a>이원희 님의 관심목록</a>
 				</div>
 				<div class="like-t-box-r">
-					<a>총 <span>999개</span>의 관심 목록이 있습니다.</a>
+					<a>총 <span>999</span>개의 관심 목록이 있습니다.</a>
 				</div>
 			</div>
 		</div>
