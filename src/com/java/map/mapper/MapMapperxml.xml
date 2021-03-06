@@ -6,6 +6,7 @@
 <mapper namespace="com.java.map.mapper.MapMapper">
 	<select id="mapList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
 		select "room_MapX","room_MapY","room_Num" from room
+		
 		<where>
 			<if test="room1 != null">
 					"room_Type" LIKE '%' || #{room1} || '%' 
