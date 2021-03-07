@@ -5,37 +5,42 @@
 
 <mapper namespace="com.java.map.mapper.MapMapper">
 	<select id="mapList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
-		select "room_MapX","room_MapY","room_Num" from (select * from room <where>
-			<if test="room1 != null">
-					"room_Type" LIKE '%' || #{room1} || '%' 
-			</if>
-			<if test="room2 != null">
-					or "room_Type"  LIKE '%' || #{room2} || '%' 
-			</if>
-			<if test="room3 != null">
-					or "room_Type"  LIKE '%' || #{room3} || '%' 
-			</if>
-			<if test="room4 != null">
-					or "room_Type"  LIKE '%' || #{room4} || '%' 
-			</if>
-			</where>)
 		
+		select room_MapX,room_MapY,room_Num from (select * from room <where>
+				<if test="room1 != null">
+						room_Type LIKE '%' || #{room1} || '%' 
+				</if>
+				<if test="room2 != null">
+						or room_Type  LIKE '%' || #{room2} || '%' 
+				</if>
+				<if test="room3 != null">
+						or room_Type  LIKE '%' || #{room3} || '%' 
+				</if>
+				<if test="room4 != null">
+						or room_Type  LIKE '%' || #{room4} || '%' 
+				</if>
+				</where>)
 		<where>
+	
 			<if test="sell1 != null">
-					or "room_RentType"  LIKE '%' || #{sell1} || '%' 
+					or room_RentType  LIKE '%' || #{sell1} || '%' 
 			</if>
 			<if test="sell2 != null">
-					or "room_RentType"  LIKE '%' || #{sell2} || '%' 
+					or room_RentType  LIKE '%' || #{sell2} || '%' 
 			</if>
-			<if test="sell3 != null">
-					or "room_RentType"  LIKE '%' || #{sell3} || '%' 
-			</if>
+
+			<if test="price1 != null">
+				and cast(SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) as NUMBER(38)) &gt;= 500
+			</if>		
+			<if test="price2 != null">
+				and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) &lt;= 500 
+			</if>	
 		</where>
-		
+			
 	</select>
 	
 	<select id="mapClickList" resultType="com.java.map.dto.MapDto">
-		select "room_Price","room_Manageprice","room_Type","room_RentType","room_LikeNum" from room where "room_Num" = #{num}
+		select room_Price,room_Manageprice,room_Type,room_RentType,room_LikeNum from room where room_Num = #{num}
 	</select>
 
   <select id="boardCount" resultType="int">
@@ -45,17 +50,17 @@
     
       <select id="boardList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
     	<![CDATA[
-    		select "room_Price","room_Num", "room_LikeNum","room_Type","room_Floor","room_Size","room_Manageprice" from (select rownum as rnum, a.* 
-    		from (select * from room order by "room_Num" desc) a) b 
+    		select room_Price,room_Num, room_LikeNum,room_Type,room_Floor,room_Size,room_Manageprice from (select rownum as rnum, a.* 
+    		from (select * from room order by room_Num desc) a) b 
     		where b.rnum >= #{startRow} and b.rnum<=#{endRow}
     	]]>
     </select>
     
     <select id="mapDetailList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
     	<![CDATA[
-    		select "room_Price","room_Num", "room_LikeNum","room_Type","room_Floor","room_Size","room_Manageprice" from (select rownum as rnum, a.* 
-    		from (select * from room order by "room_Num" desc) a) b 
-    		where b.rnum >= #{startRow} and b.rnum<=#{endRow} and "room_memberNum" = #{room_memberNum}
+    		select room_Price,room_Num, room_LikeNum,room_Type,room_Floor,room_Size,room_Manageprice from (select rownum as rnum, a.* 
+    		from (select * from room order by room_Num desc) a) b 
+    		where b.rnum >= #{startRow} and b.rnum<=#{endRow} and room_memberNum = #{room_memberNum}
     	]]>
     </select>
     
@@ -64,12 +69,14 @@
 	</select>
 	
 	<select id="countNum" parameterType="java.util.HashMap" resultType="int">
-		 select count(*) from room where  "room_memberNum" = #{room_memberNum} and "room_Num" != #{room_Num}
+		 select count(*) from room where  room_memberNum = #{room_memberNum} and room_Num != #{room_Num}
 	</select>
     
     <select id="mapDetail" resultType="com.java.map.dto.MapDto">
-		select * from room where "room_Num" = #{str} 
+		select * from room where room_Num = #{str} 
 	</select>
+	
+	
 	
     
 </mapper>

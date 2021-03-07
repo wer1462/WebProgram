@@ -410,11 +410,11 @@
 								<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="radio" id="price-1" name="price1"/>
+										<input type="radio" id="price-1" name="price1" onchange="toServer('${root}')" value="500"/>
 										<label for="price-1"><span></span>500 이상</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="price-2" name="price2"/>
+										<input type="radio" id="price-2" name="price2" onchange="toServer('${root}')" value="500"/>
 										<label for="price-2"><span></span>500 이하</label>
 									</div>
 									<div class="hover-item">

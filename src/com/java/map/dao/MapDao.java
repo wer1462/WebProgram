@@ -37,12 +37,10 @@ public class MapDao{
 		hMap.put("sell1", sell1);
 		hMap.put("sell2", sell2);
 		hMap.put("sell3", sell3);
-		if(price1 != null) {
-			hMap.put("price1", price1.split(" ")[0]);
-		}
-		if(price2 != null) {
-			hMap.put("price2", price2.split(" ")[0]);
-		}
+		
+		hMap.put("price1", price1);
+		hMap.put("price2", price2);
+		
 		
 
 
