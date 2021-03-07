@@ -4,6 +4,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html>
 <head>
@@ -29,9 +30,10 @@
 		<script type="text/javascript" src="${root}/XHR/xhr.js"></script>
 		
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccef7d00e62b4082f4025e9586ca1c2a&libraries=clusterer"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccef7d00e62b4082f4025e9586ca1c2a&libraries=clusterer,services"></script>
 	<script type="text/javascript">
 	var root = "";
+	
 	
  	function toServer(root2) {
  		clusterer.clear();
@@ -306,6 +308,9 @@
 				total.appendChild(content);
 				div2.appendChild(total);
 				div.appendChild(div2);
+				
+
+
 			}
 			
 		}
@@ -333,24 +338,50 @@
 		var obj = document.getElementById("obj");
 		if(obj.room1.checked){
 			alert("ho");
-		}
-		
-		
-		
+		}		
 	}
+	
 
+	// 장소 검색 객체를 생성합니다
+	var ps = new kakao.maps.services.Places(); 
 
+	// 키워드로 장소를 검색합니다
+	function place() {
+		var place = document.getElementById("serach").value;
+		ps.keywordSearch(place, placesSearchCB); 			
+	}
+	
+
+	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	 function placesSearchCB (result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+				
+	    	console.log(result);
+	    	console.log(result[0].x);
+	    	var moveLatLon = new kakao.maps.LatLng(result[0].y, result[0].x);
+	    	map.setLevel(5);
+	        map.panTo(moveLatLon);   
+	        
+
+	    } 
+	} 
+
+	function resetBtn() {
+		document.getElementById("serach").value=null;
+	}
+	
+	
 </script>
 
 <body id="wrap" onload="toServer('${root}');">
 	
 	<div id="map-menu">
 		<div id="map-menu-l">
-			<div class="map-search">
-				<form>
-					<input type="text" placeholder="시흥 배곧신도시·안산 중앙동"/>
-					<img src="../images/loupe-map.png"/>
-				</form>
+			<div class="map-search">	
+				<form onsubmit="place()">
+					<input type="text" placeholder="시흥 배곧신도시·안산 중앙동" id="serach" value="${place }"/>
+					<img src="../images/loupe-map.png" onclick="place()"/>		
+				</form>			
 			</div>
 		</div>
 		<div id="map-menu-r">
@@ -513,6 +544,9 @@
 							</div>
 						</div>
 					</div>
+					<div class="select-box">
+						<button onclick="resetBtn()">초기화</button>
+					</div>					
 				</form>
 			</div>
 		</div>
@@ -577,6 +611,15 @@
 	        disableClickZoom: true,
 	        minClusterSize:1	        
 	    });
+		
+		if(document.getElementById("serach").value != null){
+			place();
+		}		
+		
+		
+		
+
+		
 	</script>
 </body>
 </html>

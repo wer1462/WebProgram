@@ -32,10 +32,10 @@
 				</div>
 				<div id="search-m" class="animate__animated animate__fadeInUp animate__delay-2s">
 					<div id="search-m-ac">
-						<form>
-							<img src="images/loupe.png"/>
-							<input type="text"/>
-							<button>방 찾기</button>
+						<form method="POST" action="${root }/map/search.in" >
+							<img src="${root }/images/loupe.png"/>
+							<input type="text" id="search" name="palce"/>
+							<input type="submit" value="방 찾기" id="btn"/>
 						</form>
 					</div>
 				</div>

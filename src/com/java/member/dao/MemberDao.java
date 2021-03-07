@@ -47,8 +47,8 @@ public class MemberDao {
 		return check;
 	}
 	
-	public String selectLogin(String id, String password) {
-		String check="";
+	public MemberDto selectLogin(String id, String password) {
+		MemberDto check=null;
 		HashMap<String, Object> loginCheckId = new HashMap<String, Object>();
 		loginCheckId.put("id", id);
 		loginCheckId.put("password", password);

@@ -161,7 +161,7 @@
 	width: 85%;
 }
 
-.upload-item-r form{
+.upload-item-r #box{
 	margin-left: 12px;
 }
 
@@ -292,7 +292,7 @@
 	margin-right: 7px;
 }
 
-.upload-item-r form{
+.upload-item-r #box{
 	display: flex;
 	align-items: center;
 }

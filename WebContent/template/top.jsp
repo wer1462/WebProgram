@@ -22,7 +22,8 @@
 				<a href="#">관심 목록</a> <a href="#">중개사 가입</a>
 			</div>
 			<div id="top-nav-r">
-				<a href="${root }/member/goLogin.in">로그인·회원가입</a>
+				<c:if test="${member_name == null }"><a href="${root }/member/goLogin.in">로그인·회원가입</a></c:if>
+				<c:if test="${member_name != null }"><a href="${root }/member/goLogin.in">${member_name}</a></c:if>
 			</div>
 		</div>
 	</div>

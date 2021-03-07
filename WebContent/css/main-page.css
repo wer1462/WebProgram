@@ -122,7 +122,7 @@
 	vertical-align: middle;
 }
 
-#search-m-ac form input{
+#search-m-ac form #search{
 	display: table-cell;
 	padding: 10px 22px;
 	vertical-align: middle;
@@ -133,7 +133,7 @@
 	background-color: #fff;
 }
 
-#search-m-ac form button{
+#search-m-ac form #btn{
 	display: table-cell;
 	padding: 15px 22px;
 	vertical-align: middle;

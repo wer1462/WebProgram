@@ -6,11 +6,11 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" href="css/top.css" type="text/css"/>
-	<link rel="stylesheet" href="css/bottom.css" type="text/css"/>
-	<link rel="stylesheet" href="css/main-page.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/main-page.css" type="text/css"/>
 	
-	<link rel="stylesheet" href="css/all.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/all.css" type="text/css"/>
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -30,10 +30,10 @@
 				</div>
 				<div id="search-m" class="animate__animated animate__fadeInUp animate__delay-2s">
 					<div id="search-m-ac">
-						<form>
-							<img src="images/loupe.png"/>
-							<input type="text"/>
-							<button>방 찾기</button>
+						<form method="POST" action="${root }/map/search.in" >
+							<img src="${root }/images/loupe.png"/>
+							<input type="text" id="search" name="palce"/>
+							<input type="submit" value="방 찾기" id="btn"/>
 						</form>
 					</div>
 				</div>

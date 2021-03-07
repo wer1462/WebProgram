@@ -55,8 +55,7 @@
 								<a href="${root}/member/find-id.in">아이디 /</a>
 								<a href="${root}/member/find-pw.in">비밀번호 찾기</a>
 							</div>
-								<input type="submit" value="로그인">
-								
+								<input type="submit" value="로그인">	
 							</div>
 						
 					</div>
