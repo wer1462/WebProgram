@@ -18,11 +18,11 @@
 			</div>
 			<div id="top-nav-m">
 				<a href="${root }/map/mapList.in">방찾기<span><img src="${root }/images/arrow.png" /></span></a> 
-				<a href="#">방 내놓기<span><img src="${root }/images/arrow.png" /></span></a> 
+				<a href="${root }/set/register.in">방 내놓기<span><img src="${root }/images/arrow.png" /></span></a> 
 				<a href="#">관심 목록</a> <a href="#">중개사 가입</a>
 			</div>
 			<div id="top-nav-r">
-				<a href="${root }/member/loginPage.in">로그인·회원가입</a>
+				<a href="${root }/member/goLogin.in">로그인·회원가입</a>
 			</div>
 		</div>
 	</div>

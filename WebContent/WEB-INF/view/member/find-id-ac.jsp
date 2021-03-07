@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 
@@ -36,18 +38,18 @@
 							<div class="login-id find-id">
 								<label>귀하의 정보로 아이디를 검색했습니다.</label><br/>
 								<div class="find-search-ac">
-									<a>leewonheebabo<span>입니다.</span></a>
+									<a>${findId}<span>입니다.</span></a>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="login-f">
-						<form>
+						
 							<div class="login-ac find-ac">
-								<a href="#">비밀번호 재설정</a>
-								<input type="submit" value="로그인으로 돌아가기">
+								<a href="${root}/member/find-pw.in">비밀번호 찾기</a>
+								<input type="button" value="로그인으로 돌아가기" onclick="location.href='${root}/member/goLogin.in'">
 							</div>
-						</form>
+						
 					</div>
 					<div class="find-f">
 						<a>추가적인 도움이 필요하십니까?<a class="find-f-ac" href="#">자세히 알아보기</a></a>

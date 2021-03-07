@@ -13,7 +13,17 @@
     
 	</insert>
 
+	<select id="loginCheckId" resultType="String">
+    		SELECT "member_Num" FROM  MEMBER where "member_Id" = #{id}
+    		AND "member_Pwd" = #{password}
+    </select>
 	
-	
+	<select id="loginfindId" resultType="String">
+    		SELECT "member_Id" FROM MEMBER WHERE "member_Email" = #{EmailOrPhon} OR "member_Telephone" = #{EmailOrPhon}
+    </select>
+    
+    <select id="loginfindPw" resultType="String">
+    		SELECT "member_Pwd" FROM MEMBER WHERE "member_Email" = #{EmailOrPhon} OR "member_Telephone" = #{EmailOrPhon}
+    </select>
 	
 </mapper>

@@ -119,7 +119,7 @@
 						</div>
 					</div>
 					<div class="like-item">
-						<div class="like-item-img img-item-5" OnClick="location.href ='#'">
+						<div class="like-item-img img-item-5" OnClick="">
 							<div class="like-del">
 							</div>
 						</div>

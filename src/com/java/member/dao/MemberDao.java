@@ -1,5 +1,7 @@
 package com.java.member.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -41,15 +43,57 @@ public class MemberDao {
 		}finally {
 			session.close();
 		}
-		
-		
-		
-		
-		
-		
+			
 		return check;
 	}
 	
+	public String selectLogin(String id, String password) {
+		String check="";
+		HashMap<String, Object> loginCheckId = new HashMap<String, Object>();
+		loginCheckId.put("id", id);
+		loginCheckId.put("password", password);
+		try {	
+			
+			session=sqlSessionFactory.openSession();
+			check=session.selectOne("loginCheckId",loginCheckId);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return check;
+	}
+	public String selectId(String EmailOrPhon) {
+		String findId = "";
+		System.out.println(findId);
+		try {
+			session = sqlSessionFactory.openSession();
+			findId = session.selectOne("loginfindId", EmailOrPhon);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return findId;
+	}
+	
+	public String selectPw(String EmailOrPhon) {
+		String findPw = "";
+		System.out.println(findPw);
+		try {
+			session = sqlSessionFactory.openSession();
+			findPw = session.selectOne("loginfindPw", EmailOrPhon);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return findPw;
+	}
 	
 	
 }

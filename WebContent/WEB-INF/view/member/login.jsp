@@ -32,29 +32,35 @@
 						<ul>
 							<!-- <li>로고</li> -->
 							<li>로그인</li>
-							<li>신규 사용자이신가요? <a href="${root }/member/register.in">계정 만들기</a></li>
+							<li>신규 사용자이신가요? <a href="${root}/member/register.in">계정 만들기</a></li>
 						</ul>
 					</div>
+					<form action="${root}/member/loginPage.in">
 					<div class="login-m">
-						<form>
+						
 							<div class="login-id">
 								<label>아이디</label><br/>
-								<input type="text" maxlength="14">
+								<input type="text" name="id" maxlength="14">
 							</div>
 							<div class="login-pw">
 								<label>비밀번호</label><br/>
-								<input type="password" maxlength="20">
+								<input type="password" name="password" maxlength="20">
 							</div>
-						</form>
+							${msg}
 					</div>
 					<div class="login-f">
-						<form>
+						
 							<div class="login-ac">
-								<a href="#">아이디·비밀번호 찾기</a>
-								<input type="submit" value="로그인">
+							<div class="login-box">
+								<a href="${root}/member/find-id.in">아이디 /</a>
+								<a href="${root}/member/find-pw.in">비밀번호 찾기</a>
 							</div>
-						</form>
+								<input type="submit" value="로그인">
+								
+							</div>
+						
 					</div>
+					</form>
 					<div class="login-sns">
 						<form>
 							<div class="sns-item">

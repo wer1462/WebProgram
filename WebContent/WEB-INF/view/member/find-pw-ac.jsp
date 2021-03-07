@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 
@@ -31,24 +33,26 @@
 							<li>비밀번호 찾기</li>
 						</ul>
 					</div>
+					<form action="${root}/member/goLogin.in" method="post">
 					<div class="login-m">
-						<form>
+						
 							<div class="login-id find-id">
 								<label>귀하의 정보로로 비밀번호를 검색했습니다.</label><br/>
 								<div class="find-search-ac">
-									<a>1q2w3e4r!<span>입니다.</span></a><br/>
+									<a>${findPw}<span>입니다.</span></a><br/>
 								</div>
 							</div>
-						</form>
+						
 					</div>
 					<div class="login-f">
-						<form>
+						
 							<div class="login-ac find-ac">
 								<a href="#">&nbsp;</a>
 								<input type="submit" value="로그인으로 돌아가기">
 							</div>
-						</form>
+						
 					</div>
+					</form>
 					<div class="find-f">
 						<a>추가적인 도움이 필요하십니까?<a class="find-f-ac" href="#">자세히 알아보기</a></a>
 					</div>
