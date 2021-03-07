@@ -75,12 +75,6 @@
 			}
 			params += "sell2="+obj.sell2.value;
 		}
-		if(obj.sell3.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "sell3="+obj.sell3.value;
-		}
 		
 		
 		if(obj.price1.checked){
@@ -390,7 +384,7 @@
 						</div>
 					</div>
 					<div class="select-box">
-						<button disabled>월세·전세·매매</button>
+						<button disabled>월세·전세</button>
 						<div class="select-box-hover">
 							<div class="select-box-hover-ac animate__animated animate__fadeIn animate__delay">
 								<a class="select-box-hover-ac-t">매물 종류</a><br/>
@@ -403,10 +397,6 @@
 									<div class="hover-item">
 										<input type="checkbox" id="sell-2" name="sell2" onchange="toServer('${root}')" value="전세"/>
 										<label for="sell-2"><span></span>전세</label>
-									</div>
-									<div class="hover-item">
-										<input type="checkbox" id="sell-3" name="sell3" onchange="toServer('${root}')" value="매매"/>
-										<label for="sell-3"><span></span>매매</label>
 									</div>
 								</div>
 							</div>

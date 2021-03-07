@@ -5,9 +5,7 @@
 
 <mapper namespace="com.java.map.mapper.MapMapper">
 	<select id="mapList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
-		select "room_MapX","room_MapY","room_Num" from room
-		
-		<where>
+		select "room_MapX","room_MapY","room_Num" from (select * from room <where>
 			<if test="room1 != null">
 					"room_Type" LIKE '%' || #{room1} || '%' 
 			</if>
@@ -20,7 +18,9 @@
 			<if test="room4 != null">
 					or "room_Type"  LIKE '%' || #{room4} || '%' 
 			</if>
-			
+			</where>)
+		
+		<where>
 			<if test="sell1 != null">
 					or "room_RentType"  LIKE '%' || #{sell1} || '%' 
 			</if>
@@ -31,6 +31,7 @@
 					or "room_RentType"  LIKE '%' || #{sell3} || '%' 
 			</if>
 		</where>
+		
 	</select>
 	
 	<select id="mapClickList" resultType="com.java.map.dto.MapDto">
