@@ -378,10 +378,10 @@
 	<div id="map-menu">
 		<div id="map-menu-l">
 			<div class="map-search">	
-				<form onsubmit="place()">
 					<input type="text" placeholder="시흥 배곧신도시·안산 중앙동" id="serach" value="${place }"/>
+				
 					<img src="../images/loupe-map.png" onclick="place()"/>		
-				</form>			
+							
 			</div>
 		</div>
 		<div id="map-menu-r">

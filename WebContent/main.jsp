@@ -35,7 +35,7 @@
 						<form method="POST" action="${root }/map/search.in" >
 							<img src="${root }/images/loupe.png"/>
 							<input type="text" id="search" name="palce"/>
-							<input type="submit" value="방 찾기" id="btn"/>
+							<input type="submit" value="방 찾기" class="search-m-ac-btn"/>
 						</form>
 					</div>
 				</div>
