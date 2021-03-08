@@ -49,9 +49,15 @@ public class MapDto {
 	private String ROOM_MOVEIN;
 	private String ROOM_SECURITY;
 	private String ROOM_AGENT;
+	private String ROOM_REPORTUSER;
 	
 	
-	
+	public String getROOM_REPORTUSER() {
+		return ROOM_REPORTUSER;
+	}
+	public void setROOM_REPORTUSER(String rOOM_REPORTUSER) {
+		ROOM_REPORTUSER = rOOM_REPORTUSER;
+	}
 	public String getSubRoom_Type() {
 		return subRoom_Type;
 	}

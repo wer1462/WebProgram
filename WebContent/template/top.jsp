@@ -18,12 +18,12 @@
 			</div>
 			<div id="top-nav-m">
 				<a href="${root }/map/mapList.in">방찾기<span><img src="${root }/images/arrow.png" /></span></a> 
-				<c:if test="${member_name != null }"><a href="${root }/set/register.in">방 내놓기<span><img src="${root }/images/arrow.png" /></span></a> </c:if>
-				<c:if test="${member_name != null }"><a href="${root }/map/like.in">관심 목록</a> <a href="#">중개사 가입</a></c:if>
+				<c:if test="${member_num != null }"><a href="${root }/set/register.in">방 내놓기<span><img src="${root }/images/arrow.png" /></span></a> </c:if>
+				<c:if test="${member_num != null }"><a href="${root }/map/like.in">관심 목록</a></c:if>
 			</div>
 			<div id="top-nav-r">
-				<c:if test="${member_name == null }"><a href="${root }/member/goLogin.in">로그인·회원가입</a></c:if>
-				<c:if test="${member_name != null }"><a href="#">${member_name}</a></c:if>
+				<c:if test="${member_num == null }"><a href="${root }/member/goLogin.in">로그인·회원가입</a></c:if>
+				<c:if test="${member_num != null }"><a href="#">${member_name}</a></c:if>
 			</div>
 		</div>
 	</div>

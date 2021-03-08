@@ -29,17 +29,9 @@ public class MapTest implements Command {
 		String sell3 = request.getParameter("sell3");
 		
 		String price1 = request.getParameter("price1");
-		String price2 = request.getParameter("price2");
-		String price3 = request.getParameter("price3");
+		String price_room1 = request.getParameter("price_room1");
 		
-		
-		String price_room1 = request.getParameter("price-room1");
-		String price_room2 = request.getParameter("price-room2");
-		String price_room3 = request.getParameter("price-room3");
-		
-		String size_room1 = request.getParameter("size-room1");
-		String size_room2 = request.getParameter("size-room2");
-		String size_room3 = request.getParameter("size-room3");
+		String size_room1 = request.getParameter("size_room1");
 		
 		String plus1 = request.getParameter("plus1");
 		String plus2 = request.getParameter("plus2");
@@ -47,8 +39,7 @@ public class MapTest implements Command {
 		String plus4 = request.getParameter("plus4");
 		String plus5 = request.getParameter("plus5");
 		String plus6 = request.getParameter("plus6");
-		String plus7 = request.getParameter("plus7");
-		String plus8 = request.getParameter("plus8");
+
 		
 		
 	
@@ -56,7 +47,7 @@ public class MapTest implements Command {
 		
 		
 		
-		List<MapDto> mapList =	MapDao.getInstance().selectAll(room1,room2,room3,room4,sell1,sell2,sell3,price1,price2,price3,price_room1,price_room2,price_room3,size_room1,size_room2,size_room3,plus1,plus2,plus3,plus4,plus5,plus6,plus7,plus8);
+		List<MapDto> mapList =	MapDao.getInstance().selectAll(room1,room2,room3,room4,sell1,sell2,sell3,price1,price_room1,size_room1,plus1,plus2,plus3,plus4,plus5,plus6);
 		
 		
 		JSONArray jsonArray = new JSONArray();

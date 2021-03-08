@@ -6,7 +6,8 @@
 <mapper namespace="com.java.map.mapper.MapMapper">
 	<select id="mapList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
 		
-		select room_MapX,room_MapY,room_Num from (select * from room <where>
+		select room_MapX,room_MapY,room_Num from
+		(select * from (select * from room <where>
 				<if test="room1 != null">
 						room_Type LIKE '%' || #{room1} || '%' 
 				</if>
@@ -28,14 +29,84 @@
 			<if test="sell2 != null">
 					or room_RentType  LIKE '%' || #{sell2} || '%' 
 			</if>
-
-			<if test="price1 != null">
-				and cast(SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) as NUMBER(38)) &gt;= 500
-			</if>		
-			<if test="price2 != null">
-				and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) &lt;= 500 
+		</where>)
+		<where>
+			<if test='price1 == "500이상"'>
+				<![CDATA[
+					ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) >= 500
+				]]>
 			</if>	
-		</where>
+			<if test='price1 == "500이하"'>
+				<![CDATA[
+					ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) <= 500
+					
+				]]>
+			</if>
+				
+			<if test='price_room1 == "50이상"'>
+				<![CDATA[
+					and ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE,(INSTR(ROOM_PRICE,'/')+1),LENGTH(ROOM_PRICE)) >= 50
+     
+				]]>
+			</if>
+			<if test='price_room1 == "50이하"'>
+				<![CDATA[
+					and ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE,(INSTR(ROOM_PRICE,'/')+1),LENGTH(ROOM_PRICE)) <= 50					
+				]]>
+			</if>
+			
+			
+			<if test='size_room1 == "33이상"'>
+				<![CDATA[
+					and SUBSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),1,(INSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),'평')-2)) >= 33					
+				]]>
+			</if>
+			<if test='size_room1 == "33이하"'>
+				<![CDATA[
+					and SUBSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),1,(INSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),'평')-2)) <= 33					
+				]]>
+			</if>
+			
+			
+			<if test='plus1 != null'>
+				<![CDATA[
+					and SUBSTR(room_parking,1,(INSTR(room_parking,'대')-1)) >= 1			
+				]]>
+			</if>	
+			<if test='plus2 != null'>
+				<![CDATA[
+					and ROOM_VERANDA = '있음'
+				]]>
+			</if>
+			<if test='plus3 != null'>
+				<![CDATA[
+					and ROOM_ELEVATOR = '있음'
+				]]>
+			</if>
+			<if test='plus4 != null'>
+				<![CDATA[
+					and ROOM_ANIMAL = '가능'		
+				]]>
+			</if>
+			<if test='plus5 != null'>
+				<![CDATA[
+					and ROOM_BUILTIN = '빌트인 주방'			
+				]]>
+			</if>
+			<if test='plus6 != null'>
+				<![CDATA[
+					and ROOM_SECURITY is not null and ROOM_SECURITY <> '없음'				
+				]]>
+			</if>
+			
+			
+			
+		</where>	
+		
 			
 	</select>
 	
@@ -49,19 +120,112 @@
     
     
       <select id="boardList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
-    	<![CDATA[
-    		select room_Price,room_Num, room_LikeNum,room_Type,room_Floor,room_Size,room_Manageprice from (select rownum as rnum, a.* 
-    		from (select * from room order by room_Num desc) a) b 
-    		where b.rnum >= #{startRow} and b.rnum<=#{endRow}
-    	]]>
+    	
+    		select * from (select rownum as rnum, a.* 
+    		from (select * from room <where>
+				<if test="room1 != null">
+						room_Type LIKE '%' || #{room1} || '%' 
+				</if>
+				<if test="room2 != null">
+						or room_Type  LIKE '%' || #{room2} || '%' 
+				</if>
+				<if test="room3 != null">
+						or room_Type  LIKE '%' || #{room3} || '%' 
+				</if>
+				<if test="room4 != null">
+						or room_Type  LIKE '%' || #{room4} || '%' 
+				</if>
+				</where> order by room_Num desc ) a) b 
+    		<where>
+			<if test='price1 == "500이상"'>
+				<![CDATA[
+					ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) >= 500
+				]]>
+			</if>	
+			<if test='price1 == "500이하"'>
+				<![CDATA[
+					ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE, 1,(INSTR(ROOM_PRICE,'/')-1)) <= 500
+					
+				]]>
+			</if>
+				
+			<if test='price_room1 == "50이상"'>
+				<![CDATA[
+					and ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE,(INSTR(ROOM_PRICE,'/')+1),LENGTH(ROOM_PRICE)) >= 50
+     
+				]]>
+			</if>
+			<if test='price_room1 == "50이하"'>
+				<![CDATA[
+					and ROOM_RENTTYPE = '월세'
+					and SUBSTR(ROOM_PRICE,(INSTR(ROOM_PRICE,'/')+1),LENGTH(ROOM_PRICE)) <= 50					
+				]]>
+			</if>
+			
+			
+			<if test='size_room1 == "33이상"'>
+				<![CDATA[
+					and SUBSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),1,(INSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),'평')-2)) >= 33					
+				]]>
+			</if>
+			<if test='size_room1 == "33이하"'>
+				<![CDATA[
+					and SUBSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),1,(INSTR(SUBSTR(room_size,(INSTR(room_size,'/')+2)),'평')-2)) <= 33					
+				]]>
+			</if>
+			
+			
+			<if test='plus1 != null'>
+				<![CDATA[
+					and SUBSTR(room_parking,1,(INSTR(room_parking,'대')-1)) >= 1			
+				]]>
+			</if>	
+			<if test='plus2 != null'>
+				<![CDATA[
+					and ROOM_VERANDA = '있음'
+				]]>
+			</if>
+			<if test='plus3 != null'>
+				<![CDATA[
+					and ROOM_ELEVATOR = '있음'
+				]]>
+			</if>
+			<if test='plus4 != null'>
+				<![CDATA[
+					and ROOM_ANIMAL = '가능'		
+				]]>
+			</if>
+			<if test='plus5 != null'>
+				<![CDATA[
+					and ROOM_BUILTIN = '빌트인 주방'			
+				]]>
+			</if>
+			<if test='plus6 != null'>
+				<![CDATA[
+					and ROOM_SECURITY is not null and ROOM_SECURITY <> '없음'				
+				]]>
+			</if>		
+			and b.rnum &gt;= #{startRow} and b.rnum &lt;= #{endRow}
+		</where>	
+	
+    	 
+    	
+    	
+    	
+    	
     </select>
     
     <select id="mapDetailList" parameterType="java.util.HashMap" resultType="com.java.map.dto.MapDto">
     	<![CDATA[
-    		select room_Price,room_Num, room_LikeNum,room_Type,room_Floor,room_Size,room_Manageprice from (select rownum as rnum, a.* 
+    		select * from (select rownum as rnum, a.* 
     		from (select * from room order by room_Num desc) a) b 
     		where b.rnum >= #{startRow} and b.rnum<=#{endRow} and room_memberNum = #{room_memberNum}
     	]]>
+    	
+    	
     </select>
     
     <select id="randomNum" resultType="int">
@@ -76,6 +240,17 @@
 		select * from room where room_Num = #{str} 
 	</select>
 	
+	
+	<select id="myLikePageList" resultType="com.java.map.dto.MapDto">
+		 select a.* from room a,member b
+            where b.member_num = #{member_num} and to_char(b.member_likepage) like  CONCAT(CONCAT('%',to_char(a.room_num)),'%')
+	</select>
+	
+	<update id="reportUpdate" parameterType="java.util.HashMap">
+		update room
+		set ROOM_REPORTUSER = (select ROOM_REPORTUSER from room WHERE room_Num = #{room_Num})||#{member_num},ROOM_BADNUM = ROOM_BADNUM +1
+		WHERE room_Num = #{room_Num}
+	</update>
 	
 	
     

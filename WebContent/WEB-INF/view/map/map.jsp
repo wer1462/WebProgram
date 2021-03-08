@@ -64,7 +64,7 @@
 			}
 			params += "room4="+obj.room4.value;
 		}
-		
+	
 		if(obj.sell1.checked){
 			if(params != ""){
 				params += "&";
@@ -77,65 +77,24 @@
 			}
 			params += "sell2="+obj.sell2.value;
 		}
+	
 		
-		
-		if(obj.price1.checked){
 			if(params != ""){
 				params += "&";
 			}
-			params += "price1="+obj.price1.value;
-		}
-		if(obj.price2.checked){
+			params += "price1="+obj.price.value;
+			
 			if(params != ""){
 				params += "&";
 			}
-			params += "price2="+obj.price2.value;
-		}
-		if(obj.price3.checked){
+			params += "price_room1="+obj.price_room.value;
+			
+
 			if(params != ""){
 				params += "&";
 			}
-			params += "price3="+obj.price3.value;
-		}
-		
-		
-		if(obj.price_room1.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "price_room1="+obj.price_room1.value;
-		}
-		if(obj.price_room2.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "price_room2="+obj.price_room2.value;
-		}
-		if(obj.price_room3.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "price_room3="+obj.price_room3.value;
-		}
-		
-		if(obj.size_room1.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "size_room1="+obj.size_room1.value;
-		}
-		if(obj.size_room2.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "size_room2="+obj.size_room2.value;
-		}
-		if(obj.size_room3.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "size_room3="+obj.size_room3.value;
-		}
+			params += "size_room1="+obj.size_room.value;
+
 		
 		
 		if(obj.plus1.checked){
@@ -174,18 +133,6 @@
 			}
 			params += "plus6="+obj.plus6.value;
 		}
-		if(obj.plus7.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "plus7="+obj.plus7.value;
-		}
-		if(obj.plus8.checked){
-			if(params != ""){
-				params += "&";
-			}
-			params += "plus8="+obj.plus8.value;
-		}
 		
 				
 		sendRequest("POST", url, fromServer, params);
@@ -200,7 +147,7 @@
 			list.push(arr[i].getTitle());
 		}
 		params = "list=" + list;
-		sendRequest("POST", url, fro , params);
+		sendRequest("POST", url, null , params);
 		
 	}
  	
@@ -246,10 +193,116 @@
  	function mapList(pageNum){
 		var url = root + "/map/mapListAjax.in";
 		params = "pageNumber="+pageNum
+		var obj = document.getElementById("obj");
+		
+		if(obj.room1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room1="+obj.room1.value;
+		}
+		if(obj.room2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room2="+obj.room2.value;
+		}
+		if(obj.room3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room3="+obj.room3.value;
+		}
+		if(obj.room4.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "room4="+obj.room4.value;
+		}
+	
+		if(obj.sell1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "sell1="+obj.sell1.value;
+		}
+		if(obj.sell2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "sell2="+obj.sell2.value;
+		}
+	
+		
+			if(params != ""){
+				params += "&";
+			}
+			params += "price1="+obj.price.value;
+			
+			if(params != ""){
+				params += "&";
+			}
+			params += "price_room1="+obj.price_room.value;
+			
+
+			if(params != ""){
+				params += "&";
+			}
+			params += "size_room1="+obj.size_room.value;
+
+		
+		
+		if(obj.plus1.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus1="+obj.plus1.value;
+		}
+		if(obj.plus2.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus2="+obj.plus2.value;
+		}
+		if(obj.plus3.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus3="+obj.plus3.value;
+		}
+		if(obj.plus4.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus4="+obj.plus4.value;
+		}
+		if(obj.plus5.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus5="+obj.plus5.value;
+		}
+		if(obj.plus6.checked){
+			if(params != ""){
+				params += "&";
+			}
+			params += "plus6="+obj.plus6.value;
+		}
+		
 		sendRequest("POST", url, fromMap, params);
  	}
  	
  	var num = 1;
+	var marker = new kakao.maps.Marker({});
+
+ 	function hoverMarker(x,y){
+
+ 		marker.setPosition(new kakao.maps.LatLng(y, x));
+ 		marker.setMap(map);
+
+	 	
+ 	}
+ 	
 	function fromMap(){
 		if(xhr.readyState==4 && xhr.status==200) {
 			var obj=JSON.parse(xhr.responseText);
@@ -263,7 +316,10 @@
 				
 				var total = document.createElement("div");
 				total.setAttribute("class","map-list-b");
-				total.setAttribute("OnClick","location.href ='"+root+"/map/mapDetail.in?room_Num="+obj.map[i].room_Num+"'")
+				total.setAttribute("OnClick","location.href ='"+root+"/map/mapDetail.in?room_Num="+obj.map[i].room_Num+"'");
+				
+				total.setAttribute("onmouseover", "hoverMarker('"+obj.map[i].room_MapX+"','"+obj.map[i].room_MapY+"')");
+				total.setAttribute("onmouseout", "hoverMarker('"+obj.map[i].room_MapX+"'+'"+obj.map[i].room_MapY+"')");
 				
 				var ul = document.createElement("ul");
 				 
@@ -286,7 +342,12 @@
 				li2.setAttribute("class","list-text-2");
 
 				var aa = document.createElement("a");
-				aa.innerHTML =obj.map[i].room_Price;
+				if(obj.map[i].room_Price.indexOf("/")>0){
+					aa.innerHTML =obj.map[i].room_Price.replace('10000', '1억') +"만 원";
+				}else{
+					aa.innerHTML =obj.map[i].room_Price +"만 원";
+				}
+				
 				li2.appendChild(aa);
 
 
@@ -301,13 +362,13 @@
 				ul.appendChild(li2);
 				ul.appendChild(li3);
 
-				var div = document.getElementById("map-view-l");
+
 				var div2 = document.getElementById("map-list-view");
 				content.appendChild(ul);
 				total.appendChild(img);
 				total.appendChild(content);
 				div2.appendChild(total);
-				div.appendChild(div2);
+
 				
 
 
@@ -334,12 +395,7 @@
 	});
 
 		
-	function searchList(){
-		var obj = document.getElementById("obj");
-		if(obj.room1.checked){
-			alert("ho");
-		}		
-	}
+
 	
 
 	// 장소 검색 객체를 생성합니다
@@ -441,15 +497,15 @@
 								<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="radio" id="price-1" name="price1" onchange="toServer('${root}')" value="500"/>
+										<input type="radio" id="price-1" name="price" onchange="toServer('${root}')" value="500이상"/>
 										<label for="price-1"><span></span>500 이상</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="price-2" name="price2" onchange="toServer('${root}')" value="500"/>
+										<input type="radio" id="price-2" name="price" onchange="toServer('${root}')" value="500이하"/>
 										<label for="price-2"><span></span>500 이하</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="price-3" name="price3"/>
+										<input type="radio" id="price-3" name="price" onchange="toServer('${root}')"/>
 										<label for="price-3"><span></span>상관없음</label>
 									</div>
 								</div>
@@ -458,15 +514,15 @@
 									<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 									<div class="hover-item-box">
 										<div class="hover-item">
-											<input type="radio" id="price-room-1" name="price_room1"/>
+											<input type="radio" id="price-room-1" name="price_room" onchange="toServer('${root}')" value="50이상"/>
 											<label for="price-room-1"><span></span>50 이상</label>
 										</div>
 										<div class="hover-item">
-											<input type="radio" id="price-room-2" name="price_room2"/>
+											<input type="radio" id="price-room-2" name="price_room" onchange="toServer('${root}')" value="50이하"/>
 											<label for="price-room-2"><span></span>50 이하</label>
 										</div>
 										<div class="hover-item">
-											<input type="radio" id="price-room-3" name="price_room3"/>
+											<input type="radio" id="price-room-3" name="price_room" onchange="toServer('${root}')"/>
 											<label for="price-room-3"><span></span>상관없음</label>
 										</div>
 									</div>
@@ -482,15 +538,15 @@
 								<!-- <a class="select-box-hover-ac-sub select-box-hover-ac-sub-x">중복선택 불가능</a> -->
 								<div class="hover-item-box">
 									<div class="hover-item">
-										<input type="radio" id="size-room-1" name="size_room1"/>
+										<input type="radio" id="size-room-1" name="size_room" value="33이상" onchange="toServer('${root}')"/>
 										<label for="size-room-1"><span></span>33m²(10평) 이상</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="size-room-2" name="size_room2"/>
+										<input type="radio" id="size-room-2" name="size_room" value="33이하" onchange="toServer('${root}')"/>
 										<label for="size-room-2"><span></span>33m²(10평) 이하</label>
 									</div>
 									<div class="hover-item">
-										<input type="radio" id="size-room-3" name="size_room3"/>
+										<input type="radio" id="size-room-3" name="size_room" onchange="toServer('${root}')"/>
 										<label for="size-room-3"><span></span>상관없음</label>
 									</div>
 								</div>
@@ -506,38 +562,30 @@
 								<div class="hover-item-box hover-item-box-plus">
 									<div class="hover-item-box-l">
 										<div class="hover-item">
-											<input type="checkbox" id="plus-1" name="plus1"/>
+											<input type="checkbox" id="plus-1" name="plus1" onchange="toServer('${root}')" value="check"/>
 											<label for="plus-1"><span></span>주차가능</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-2" name="plus2"/>
+											<input type="checkbox" id="plus-2" name="plus2" onchange="toServer('${root}')" value="check"/>
 											<label for="plus-2"><span></span>베란다/발코니</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-3" name="plus3"/>
-											<label for="plus-3"><span></span>단기임대</label>
-										</div>
-										<div class="hover-item">
-											<input type="checkbox" id="plus-4" name="plus4"/>
-											<label for="plus-4"><span></span>엘리베이터</label>
+											<input type="checkbox" id="plus-3" name="plus3" onchange="toServer('${root}')" value="check"/>
+											<label for="plus-3"><span></span>엘리베이터</label>
 										</div>
 									</div>
 									<div class="hover-item-box-r">
 										<div class="hover-item">
-											<input type="checkbox" id="plus-6" name="plus5"/>
-											<label for="plus-6"><span></span>풀옵션</label>
+											<input type="checkbox" id="plus-4" name="plus4" onchange="toServer('${root}')" value="check"/>
+											<label for="plus-4"><span></span>반려동물</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-7" name="plus6"/>
-											<label for="plus-7"><span></span>반려동물</label>
+											<input type="checkbox" id="plus-5" name="plus5" onchange="toServer('${root}')" value="check"/>
+											<label for="plus-5"><span></span>빌트인</label>
 										</div>
 										<div class="hover-item">
-											<input type="checkbox" id="plus-9" name="plus7"/>
-											<label for="plus-9"><span></span>빌트인</label>
-										</div>
-										<div class="hover-item">
-											<input type="checkbox" id="plus-5" name="plus8"/>
-											<label for="plus-5"><span></span>보안/안전시설</label>
+											<input type="checkbox" id="plus-6" name="plus6" onchange="toServer('${root}')" value="check"/>
+											<label for="plus-6"><span></span>보안/안전시설</label>
 										</div>
 									</div>
 								</div>
@@ -588,10 +636,6 @@
 							</ul> 
 						</div>
 					</div> -->
-
-				<center>	
-					
-			</center>
 			</div>
 		</div>
 		<div id="map-view-r">

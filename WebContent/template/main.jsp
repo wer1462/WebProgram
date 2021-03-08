@@ -41,11 +41,11 @@
 					<div id="search-b-ac">
 						<ul>
 							<li><a id="search-b-ac-fav">인기 검색어</a></li>
-							<li><a href="#">#안산</a></li>
-							<li><a href="#">#배곧신도시</a></li>
-							<li><a href="#">#고잔신도시</a></li>
-							<li><a href="#">#오피스텔</a></li>
-							<li><a href="#">#정왕역</a></li>
+							<li><a href="${root }/map/search.in?palce=안산">#안산</a></li>
+							<li><a href="${root }/map/search.in?palce=배곧신도시">#배곧신도시</a></li>
+							<li><a href="${root }/map/search.in?palce=고잔신도시">#고잔신도시</a></li>
+							<li><a href="${root }/map/search.in?palce=오이도역">#오이도역</a></li>
+							<li><a href="${root }/map/search.in?palce=정왕역">#정왕역</a></li>
 						</ul>
 					</div>
 				</div>

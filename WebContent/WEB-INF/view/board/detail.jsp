@@ -42,10 +42,27 @@ function toLikeCheck(root) {
 	}else{
 		str = "제거";
 	}
-	params = "like=" + str;
+	var params = "like=" + str;
 	params += "&room_Num="+room_Num;
 	sendRequest("POST", url, null , params);
 	
+}
+
+
+function report(root,member_num,room_Num){
+	var url = root + "/map/report.in";
+	var params = "";
+	params += "member_num="+member_num;
+	params += "&room_Num="+room_Num;
+	sendRequest("POST", url, setReport , params);
+}
+
+
+function setReport(){
+	if(xhr.readyState==4 && xhr.status==200) {
+			document.getElementById("reportBtn").style.visibility='hidden';
+	}
+
 }
 
 </script>
@@ -73,7 +90,11 @@ function toLikeCheck(root) {
 						<label for="like">관심목록에 추가<span></span></label>
 					</div>
 					<a href="#">1:1 상담문의</a>
-					<a href="#">허위매물 신고</a>
+					<c:if test="${member_num != null }">
+						<c:if test="${!fn: contains(mapDto.ROOM_REPORTUSER,member_num)}">
+							<a id="reportBtn" onclick="report('${root}','${member_num}',${mapDto.room_Num})">허위매물 신고</a>
+						</c:if>
+					</c:if>
 				</div>
 			</div>
 		</div>

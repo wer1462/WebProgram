@@ -36,7 +36,7 @@
 		</if>
 		<if test='likeCheck == "추가"'>
 		    UPDATE member
-			SET MEMBER_LIKEPAGE = (select MEMBER_LIKEPAGE from member)||#{room_num}
+			SET MEMBER_LIKEPAGE = (select MEMBER_LIKEPAGE from member WHERE member_num = #{member_num})||#{room_num}
 			WHERE member_num = #{member_num}
 	    </if>
     </update>
