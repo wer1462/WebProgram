@@ -29,20 +29,47 @@
 <meta charset="utf-8">
 <title>detail</title>
 </head>
+<script type="text/javascript" src="${root}/XHR/xhr.js"></script>
+<script type="text/javascript">
 
+function toLikeCheck(root) {
+	var url = root + "/map/clickLike.in";
+	var like = document.getElementById("like").checked;
+	var room_Num = document.getElementById("room_Num").value;
+	var str = "";
+	if(like){
+		str = "추가";
+	}else{
+		str = "제거";
+	}
+	params = "like=" + str;
+	params += "&room_Num="+room_Num;
+	sendRequest("POST", url, null , params);
+	
+}
+
+</script>
 <body id="wrap">
+	<input type="hidden" value="${mapDto.room_Num }" id="room_Num"/>
 	<div id="detail">
 		<div id="detail-t">
 			<div class="detail-t-box">
 				<div class="detail-t-box-l">
 					<a>${mapDto.room_Type }</a><a>/</a>
 					<a>${mapDto.room_Size }</a><a>/</a>
-					<a>보증금·월세 ${mapDto.room_Price }</a>
+					<c:if test="${mapDto.room_RentType == '월세'}"> 
+						<a>보증금/월세 ${mapDto.room_Price }</a>
+					</c:if>
+										
+					<c:if test="${mapDto.room_RentType == '전세'}">
+						<a>전세 ${mapDto.room_Price }</a>
+					</c:if>
 				</div>
 				<div class="detail-t-box-r">
 					<!-- <button></button> -->
 					<div class="like-btn">
-						<input type="checkbox" name="like" id="like">
+						<c:if test="${check == 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')" checked="checked"></c:if>
+						<c:if test="${check != 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')"></c:if>
 						<label for="like">관심목록에 추가<span></span></label>
 					</div>
 					<a href="#">1:1 상담문의</a>
@@ -82,14 +109,7 @@
 												<a>전세</a>
 												<div>${mapDto.room_Price }</div>
 											</li> 
-										</c:when>
-										
-										<c:when test="${mapDto.room_RentType == '매매'}">
-											<li>
-												<a>매매</a>
-												<div>${mapDto.room_Price }</div>
-											</li> 
-										</c:when>
+										</c:when>				
 									</c:choose>
 
 									

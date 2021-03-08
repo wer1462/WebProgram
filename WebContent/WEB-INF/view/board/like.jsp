@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <c:set var="root" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html>
 <head>
 	
-	<link rel="stylesheet" href="../css/top.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/bottom.css" type="text/css"/>
-	<link rel="stylesheet" href="../css/like-page.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/like-page.css" type="text/css"/>
 	
-	<link rel="stylesheet" href="../css/all.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/all.css" type="text/css"/>
 	
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">

@@ -94,6 +94,35 @@ public class MemberDao {
 		
 		return findPw;
 	}
+	public void likePagePlus(String room_num, int member_num, String likeCheck) {
+		HashMap<String, Object> loginCheckId = new HashMap<String, Object>();
+		loginCheckId.put("member_num", member_num);
+		loginCheckId.put("likeCheck", likeCheck);
+		loginCheckId.put("room_num", room_num+",");
+		try {
+			session = sqlSessionFactory.openSession();
+			session.update("likePageUpdate", loginCheckId);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+			
+		}
+		
+	}
+	public String likeList(int member_num) {
+		String str = null;
+		try {
+			session = sqlSessionFactory.openSession();
+			str = session.selectOne("likeList",member_num);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();		
+		}
+		return str;
+	}
 	
 	
 }

@@ -30,7 +30,6 @@ public class LoginPage implements Command {
 			return "/WEB-INF/view/member/login.jsp";
 		}
 		else {
-			
 			session.setAttribute("member_name", check.getMember_Name());
 			session.setAttribute("member_num", check.getMember_Num());
 			return "/template/main.jsp";

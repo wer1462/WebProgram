@@ -25,5 +25,24 @@
     <select id="loginfindPw" resultType="String">
     		SELECT member_Pwd FROM MEMBER WHERE member_Email = #{EmailOrPhon} OR member_Telephone = #{EmailOrPhon}
     </select>
+    
+  
+    
+    <update id="likePageUpdate" parameterType="java.util.HashMap">
+	    <if test='likeCheck == "제거"'>
+				UPDATE member
+					SET MEMBER_LIKEPAGE = REPLACE(MEMBER_LIKEPAGE ,#{room_num},'')
+					WHERE member_num = #{member_num}
+		</if>
+		<if test='likeCheck == "추가"'>
+		    UPDATE member
+			SET MEMBER_LIKEPAGE = (select MEMBER_LIKEPAGE from member)||#{room_num}
+			WHERE member_num = #{member_num}
+	    </if>
+    </update>
+    
+    <select id="likeList" resultType="String">
+    	select member_likepage from member where member_num = #{member_num}
+    </select>
 	
 </mapper>
