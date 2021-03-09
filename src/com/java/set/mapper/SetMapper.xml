@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.java.set.mapper.SetMapper">
+ 	
+ 	<insert id="setInsert" parameterType="com.java.set.dto.SetDto">
+ 		insert into room
+		values(seq_room_num.nextval, 
+		#{room_Type}, 
+		#{room_RentType},
+		#{room_Price},
+		#{room_Deposit},
+		#{room_Manageprice},
+		#{room_LiveDate},
+		#{room_SupplySize},
+		#{room_SupplySizeM},
+		#{room_DedicatedSize},
+		#{room_DedicatedSizeM},
+		#{room_BuildingFloor},
+		#{room_Floor},
+		#{room_Count},
+		#{room_Toilet},
+		#{room_Parking},
+		#{room_Pet},
+		#{room_Elevator},
+		#{room_Built_In},
+		#{room_Veranda},
+		#{room_Options},
+		#{room_Security},
+		#{room_Content},
+		#{room_Address},
+		#{room_Dong},
+		#{room_Ho},
+		#{room_AgentStore},
+		#{room_Agent},
+		#{room_Agent},
+		#{room_Agent},
+		#{room_FileName},
+		#{room_MapX},
+		#{room_MapY},
+		sysdate
+		) 
+ 	</insert>
+ 	
+ 	<select id="setCount" resultType="int">
+		select count(*) from room
+	</select>
+	
+	<select id="setList" parameterType="java.util.HashMap" resultType="com.java.set.dto.SetDto">
+		<![CDATA[
+			SELECT * FROM
+				(SELECT rownum as rnum, a.* FROM
+					(SELECT * FROM room) a)b
+			WHERE b.rnum >= #{startRow} AND b.rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="setRead" parameterType="int" resultType="com.java.set.dto.SetDto">
+		select * from room where room_Num = #{room_num}
+	</select>
+	
+	<delete id="setDelete" parameterType="int">
+		delete from room where room_Num = #{room_Num}
+	</delete>
+ </mapper>
+    
+    
+    
+    
+    
