@@ -20,7 +20,7 @@
 <meta charset="UTF-8">
 <title>member2</title>
 </head>
-<script type="text/javascript" src="${root }/javascript/page/check.js"></script>
+<script type="text/javascript" src="${root }/javascript/page/check2.js"></script>
 <body id="wrap">
 	
 	<div id="login">

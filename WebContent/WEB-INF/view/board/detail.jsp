@@ -101,11 +101,9 @@ function setReport(){
 			</div>
 		</div>
 		<div id="detail-p" class="carousel" data-flickity='{ "wrapAround": true, "draggable": false }'>
-			<div class="carousel-cell photo photo-1"></div>
-			<div class="carousel-cell photo photo-2"></div>
-			<div class="carousel-cell photo photo-3"></div>
-			<div class="carousel-cell photo photo-4"></div>
-			<div class="carousel-cell photo photo-5"></div>
+			<c:forEach var="s" items="${fn:split(mapDto.room_FileName,',') }">
+				<div class="carousel-cell photo"><img src="${root }/${mapDto.room_Path}${s}" style="width:100%;height: 600px;"></div>
+			</c:forEach>
 		</div>
 		<div id="detail-m">
 			<div class="detail-m-box">

@@ -1,8 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
+
 <html>
 <head>
+
+
+	<link rel="stylesheet" href="${root }/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/retouch-page.css" type="text/css"/>
+	
+	<link rel="stylesheet" href="${root }/css/all.css" type="text/css"/>
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <meta charset="UTF-8">
 <title>member-change</title>
 </head>
@@ -26,12 +42,9 @@
 						<li class="retouch-admin">
 							<a>내 방 관리</a>
 							<ul class="room-admin">
-								<li><a href="#">전체 방</a></li>
-								<li><a href="#">판매가 진행중인 방</a><span>999+</span></li>
-								<li><a href="#">판매가 종료된 방</a><span>999+</span></li>
+								<li><a href="#">올린 방</a></li>
 							</ul>
 						</li>
-						<li class="retouch-admin"><a href="#">알림</a><span>999+</span></li>
 					</ul>
 				</div>
 				<div class="retouch-l-f">
@@ -46,9 +59,9 @@
 						<li>※ 타인에게 노출되지 않도록 주의해 주세요.</li>
 					</ul>
 					<div class="pw-check">
-						<form>
+						<form method="post" action="${root }/member/changeinfo.in">
 							<label>비밀번호</label>
-							<input type="password" maxlength="20" autofocus>
+							<input type="password" maxlength="20" autofocus name="pwd"/>
 						</form>
 					</div>
 				</div>

@@ -144,5 +144,11 @@ function registerForm(obj) {
 		return false;
 	}
 	
+	var chk = document.getElementById("fileId");
+  	if(!chk.value) {
+      alert("사진을 업로드해주세요");
+      return false;
+   	}
+	
 }
 

@@ -297,6 +297,8 @@
 
  	function hoverMarker(x,y){
 
+ 		
+ 		
  		marker.setPosition(new kakao.maps.LatLng(y, x));
  		marker.setMap(map);
 
@@ -306,8 +308,9 @@
 	function fromMap(){
 		if(xhr.readyState==4 && xhr.status==200) {
 			var obj=JSON.parse(xhr.responseText);
-			
-			for(var i = 0;i<10;i++){
+			var div2 = document.getElementById("map-list-view");
+		
+			for(var i = 0;i<10;i++){			
 				var content = document.createElement("div");
 				content.setAttribute("class","list-text");
 				
@@ -363,7 +366,7 @@
 				ul.appendChild(li3);
 
 
-				var div2 = document.getElementById("map-list-view");
+				
 				content.appendChild(ul);
 				total.appendChild(img);
 				total.appendChild(content);

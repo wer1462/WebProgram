@@ -125,6 +125,42 @@ public class MemberDao {
 		}
 		return str;
 	}
+	public MemberDto ChangePage(String pwd, int member_num) {
+		MemberDto memberDto = null;
+		HashMap<String, Object> loginCheckId = new HashMap<String, Object>();
+		loginCheckId.put("member_num", member_num);
+		loginCheckId.put("pwd", pwd);
+		try {
+			session = sqlSessionFactory.openSession();
+			memberDto = session.selectOne("ChangePage", loginCheckId);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+			
+		}
+		
+		return memberDto;
+	}
+	public int updateUser(int member_num, String member_Pwd, String member_Email, String phnNum) {
+		HashMap<String, Object> loginCheckId = new HashMap<String, Object>();
+		loginCheckId.put("member_num", member_num);
+		loginCheckId.put("member_Pwd", member_Pwd);
+		loginCheckId.put("member_Email", member_Email);
+		loginCheckId.put("phnNum", phnNum);
+		int check = 0;
+		try {
+			session = sqlSessionFactory.openSession();
+			check = session.update("updateuser", loginCheckId);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+			
+		}
+		return check;
+	}
 	
 	
 }

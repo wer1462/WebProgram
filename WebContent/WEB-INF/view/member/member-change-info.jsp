@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
+
 <html>
 <head>
-<meta charset="UTF-8">
-<title>member-change</title>
+
+
+	<link rel="stylesheet" href="${root }/css/top.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/bottom.css" type="text/css"/>
+	<link rel="stylesheet" href="${root }/css/retouch-page.css" type="text/css"/>
+	
+	<link rel="stylesheet" href="${root }/css/all.css" type="text/css"/>
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
+
 </head>
+<script type="text/javascript" src="${root }/javascript/page/check3.js"></script>
 <body id="wrap">
 	<div id="retouch">
 		<!-- <div id="retouch-t">
@@ -26,12 +44,9 @@
 						<li class="retouch-admin">
 							<a>내 방 관리</a>
 							<ul class="room-admin">
-								<li><a href="#">전체 방</a></li>
-								<li><a href="#">판매가 진행중인 방</a><span>999+</span></li>
-								<li><a href="#">판매가 종료된 방</a><span>999+</span></li>
+								<li><a href="#">올린 방</a></li>
 							</ul>
 						</li>
-						<li class="retouch-admin"><a href="#">알림</a><span>999+</span></li>
 					</ul>
 				</div>
 				<div class="retouch-l-f">
@@ -44,67 +59,26 @@
 						<li>개인정보 수정</li>
 					</ul>
 					<div class="privacy">
-						<form>
+						<form onsubmit="return registerForm(this);" method="post" action="${root }/member/updateMember.in">
 							<div class="privacy-items">
 								<div>이름<span></span></div>
-								<input class="privacy-name" type="text" value="이원희" disabled/>
+								<input class="privacy-name" type="text" value="${memberDto.member_Name }" disabled/>
 							</div>
 							<div class="privacy-items">
 								<div>비밀번호<span>*</span></div>
-								<input class="privacy-pw" type="password" maxlength="20" value="0123456789"/>
-								<button>비밀번호 변경</button>
-							</div>
-							<div class="privacy-items">
-								<div>생년월일<span>*</span></div>
-								<input class="privacy-yy" type="text" value="1996"/>
-								<select class="privacy-mm">
-									<option>1월</option>
-									<option>2월</option>
-									<option>3월</option>
-									<option>4월</option>
-									<option>5월</option>
-									<option>6월</option>
-									<option>7월</option>
-									<option>8월</option>
-									<option>9월</option>
-									<option>10월</option>
-									<option>11월</option>
-									<option>12월</option>
-								</select>
-								<input class="privacy-dd" type="text" value="31"/>
+								<input class="privacy-pw" type="password" maxlength="20" value="0123456789" value="${memberDto.member_Pwd }" name="member_Pwd"/>
 							</div>
 							<div class="privacy-items">
 								<div>이메일<span>*</span></div>
-								<input class="privacy-mail" type="text" value="inroom@inroom.com"/>
+								<input class="privacy-mail" type="text" value="${memberDto.member_Email }" name="member_Email"/>
 							</div>
 							<div class="privacy-items">
 								<div>전화번호<span>*</span></div>
-								<input class="privacy-phone" type="text" value="010-9999-9999"/>
-							</div>
-							<div class="privacy-items">
-								<div>주소</div>
-								<input class="privacy-addr" type="text" value="경기도 시흥시 정왕동"/>
-								<button lass="privacy-addr-btn">주소검색</button>
-							</div>
-							<div class="privacy-items">
-								<div>상세주소</div>
-								<input class="privacy-addr" type="text" value="L동 207호"/>
-							</div>
-							<div class="privacy-items">
-								<div>회원유형</div>
-								<label class="privacy-member">
-									<input class="privacy-member-ra" type="radio" name="member" checked/>
-									<span></span><a>판매자</a>
-								</label>
-								<label class="privacy-member">
-									<input class="privacy-member-ra" type="radio" name="member"/>
-									<span></span><a>구매자</a>
-								</label>
-								<a class="privacy-member-a">※ 판매자에서 구매자로 변경 시 <span>메뉴사용에 제약</span>이 있을 수 있습니다.</a>
+								<input class="privacy-phone" type="text" value="${memberDto.member_Telephone }" name="phnNum"/>
 							</div>
 							<div class="privacy-items privacy-ac">
 								<input class="privacy-ac-btn" type="submit" value="수정"/>
-								<input class="privacy-ac-btn" type="submit" value="취소"/>
+								<input class="privacy-ac-btn" type="button" value="취소" onclick="javascript:location.href='${root }/main.jsp'"/>
 							</div>
 						</form>
 					</div>

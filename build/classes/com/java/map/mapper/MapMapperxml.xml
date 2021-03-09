@@ -259,5 +259,42 @@
 	</update>
 	
 	
+	<insert id="setInsert" parameterType="com.java.map.dto.MapDto">
+ 		insert into room
+		values(seq_room_num.nextval, 
+		#{room_Type}, 
+		#{room_RentType},
+		#{room_Price},
+		#{room_Manageprice},
+		#{room_Size},
+		#{room_Floor},
+		#{room_Structure},
+		#{room_Parking},
+		#{room_Options},
+		#{room_WriterName},
+		#{room_Telephone},
+		#{room_memberNum},
+		#{room_MapX},
+		#{room_MapY},
+		0,
+		0,
+		0,
+		sysdate,
+		#{ROOM_ANIMAL},
+		#{ROOM_BUILTIN},
+		#{ROOM_ELEVATOR},
+		#{ROOM_BOILER},
+		#{ROOM_VERANDA},
+		#{ROOM_MOVEIN},
+		#{ROOM_SECURITY},
+		#{ROOM_AGENT},
+		'',
+		#{fileall},
+		#{room_FileSize},
+		#{room_Path},
+		#{room_Content}
+		) 
+ 	</insert>
+	
     
 </mapper>

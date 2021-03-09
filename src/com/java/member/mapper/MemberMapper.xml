@@ -26,6 +26,10 @@
     		SELECT member_Pwd FROM MEMBER WHERE member_Email = #{EmailOrPhon} OR member_Telephone = #{EmailOrPhon}
     </select>
     
+     <select id="ChangePage" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
+    		SELECT * FROM MEMBER WHERE member_num = #{member_num} and MEMBER_PWD = #{pwd}
+    </select>
+    
   
     
     <update id="likePageUpdate" parameterType="java.util.HashMap">
@@ -52,6 +56,14 @@
 			SET ROOM_LIKENUM = ROOM_LIKENUM + 1 
 			WHERE room_num = #{room_numInt}
 	    </if>
+    </update>
+    
+    
+    <update id="updateuser" parameterType="java.util.HashMap">
+    	UPDATE member
+			SET MEMBER_PWD = #{member_Pwd},MEMBER_TELEPHONE = #{phnNum}, MEMBER_EMAIL = #{member_Email}
+			WHERE MEMBER_NUM = #{member_num}
+    
     </update>
     
     <select id="likeList" resultType="String">

@@ -82,7 +82,7 @@
 	width: 100%;
 	margin: 0 auto;
 	
-	height: 180px;
+	height: 60px;
 	border: solid 1px #d0d2d6;
 	
 	display: flex;
@@ -224,6 +224,8 @@
 	
 	vertical-align: middle;
 }
+
+
 
 .upload-item-r input[type="radio"]{
 	position: absolute;
@@ -437,7 +439,7 @@
 }
 
 .upload-photo{
-	height: 500px;
+	height: 300px;
 }
 
 .upload-item-r .photo-file{

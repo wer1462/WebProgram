@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.java.map.dto.MapDto;
 import com.java.myBatis.SqlManager;
 
+
 public class MapDao{
 	private static SqlSessionFactory sqlSessionFactory = SqlManager.getInstance();
 	private SqlSession session;
@@ -246,5 +247,108 @@ public class MapDao{
 
 	}
 	
+	
+	
+public int insert(MapDto setDto) {
+		
+		int check = 0;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			check = session.insert("setInsert", setDto);
+			session.commit();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+	
+	public int setingCount() {
+	
+		int count = 0;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			count = session.selectOne("setCount");
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return count;
+	}
+	public List<MapDto> getSetList(int startRow,int endRow) {
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		
+		List<MapDto> valueList = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			valueList = session.selectList("setList", hMap);
+						
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return valueList;
+	}
+	
+	public MapDto read(int room_num) {	// ��ȸ��
+
+		MapDto setDto = null;
+		
+		try {			
+			session = sqlSessionFactory.openSession();
+			// �ش� �۹�ȣ �������� --> select
+			setDto = session.selectOne("setRead", room_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			// Ʈ����ǿ��� ���� �߻��� ���
+		} finally {
+			session.close();
+		}
+		return setDto;
+	}
+	
+	public int delete(int room_num) {
+		
+		int check = 0;
+		
+		try {			
+			session = sqlSessionFactory.openSession();
+			check = session.delete("setDelete", room_num);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+	
+	public MapDto updateSel(int room_num) {
+
+		MapDto setDto = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			setDto = session.selectOne("setRead", room_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return setDto;
+	}
 
 }

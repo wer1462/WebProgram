@@ -51,7 +51,158 @@ public class MapDto {
 	private String ROOM_AGENT;
 	private String ROOM_REPORTUSER;
 	
+	private String room_Content;
+	private String room_FileName;
+	private long room_FileSize;
+	private String room_Path;
 	
+	
+	
+	private String room_Floorjs;
+	private String room_BuildingFloor;
+	
+	private String room_Count;
+	private String room_Toilet;
+	
+	
+	private String fileall;
+	
+	public String getFileall() {
+		return fileall;
+	}
+	public void setFileall(String fileall) {
+		this.fileall = fileall;
+	}
+	public String getRoom_Floorjs() {
+		return room_Floorjs;
+	}
+	public void setRoom_Floorjs(String room_Floorjs) {
+		this.room_Floorjs = room_Floorjs;
+	}
+	public String getRoom_BuildingFloor() {
+		return room_BuildingFloor;
+	}
+	public void setRoom_BuildingFloor(String room_BuildingFloor) {
+		this.room_BuildingFloor = room_BuildingFloor;
+	}
+	public String getRoom_Count() {
+		return room_Count;
+	}
+	public void setRoom_Count(String room_Count) {
+		this.room_Count = room_Count;
+	}
+	public String getRoom_Toilet() {
+		return room_Toilet;
+	}
+	public void setRoom_Toilet(String room_Toilet) {
+		this.room_Toilet = room_Toilet;
+	}
+	public String getRoom_Parking1() {
+		return room_Parking1;
+	}
+	public void setRoom_Parking1(String room_Parking1) {
+		this.room_Parking1 = room_Parking1;
+	}
+	public String getRoom_Parking2() {
+		return room_Parking2;
+	}
+	public void setRoom_Parking2(String room_Parking2) {
+		this.room_Parking2 = room_Parking2;
+	}
+	public String getAa() {
+		return aa;
+	}
+	public void setAa(String aa) {
+		this.aa = aa;
+	}
+	public String getBb() {
+		return bb;
+	}
+	public void setBb(String bb) {
+		this.bb = bb;
+	}
+	public String getCc() {
+		return cc;
+	}
+	public void setCc(String cc) {
+		this.cc = cc;
+	}
+	public String getRoom_DedicatedSizeM() {
+		return room_DedicatedSizeM;
+	}
+	public void setRoom_DedicatedSizeM(String room_DedicatedSizeM) {
+		this.room_DedicatedSizeM = room_DedicatedSizeM;
+	}
+	public String getRoom_SupplySizeM() {
+		return room_SupplySizeM;
+	}
+	public void setRoom_SupplySizeM(String room_SupplySizeM) {
+		this.room_SupplySizeM = room_SupplySizeM;
+	}
+	public String getRoom_Price1() {
+		return room_Price1;
+	}
+	public void setRoom_Price1(String room_Price1) {
+		this.room_Price1 = room_Price1;
+	}
+	public String getRoom_Price2() {
+		return room_Price2;
+	}
+	public void setRoom_Price2(String room_Price2) {
+		this.room_Price2 = room_Price2;
+	}
+	public String getRoom_Deposit1() {
+		return room_Deposit1;
+	}
+	public void setRoom_Deposit1(String room_Deposit1) {
+		this.room_Deposit1 = room_Deposit1;
+	}
+	public String getRoom_Deposit2() {
+		return room_Deposit2;
+	}
+	public void setRoom_Deposit2(String room_Deposit2) {
+		this.room_Deposit2 = room_Deposit2;
+	}
+	private String room_Parking1;
+	private String room_Parking2;
+	
+	private String aa;
+	private String bb;
+	private String cc;
+	
+	private String room_DedicatedSizeM;
+	private String room_SupplySizeM;
+	
+	private String room_Price1;
+	private String room_Price2;
+	
+	private String room_Deposit1;
+	private String room_Deposit2;
+	
+	public String getRoom_Content() {
+		return room_Content;
+	}
+	public void setRoom_Content(String room_Content) {
+		this.room_Content = room_Content;
+	}
+	public String getRoom_FileName() {
+		return room_FileName;
+	}
+	public void setRoom_FileName(String room_FileName) {
+		this.room_FileName = room_FileName;
+	}
+	public long getRoom_FileSize() {
+		return room_FileSize;
+	}
+	public void setRoom_FileSize(long room_FileSize) {
+		this.room_FileSize = room_FileSize;
+	}
+	public String getRoom_Path() {
+		return room_Path;
+	}
+	public void setRoom_Path(String room_Path) {
+		this.room_Path = room_Path;
+	}
 	public String getROOM_REPORTUSER() {
 		return ROOM_REPORTUSER;
 	}

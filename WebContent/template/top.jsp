@@ -23,7 +23,7 @@
 			</div>
 			<div id="top-nav-r">
 				<c:if test="${member_num == null }"><a href="${root }/member/goLogin.in">로그인·회원가입</a></c:if>
-				<c:if test="${member_num != null }"><a href="#">${member_name}</a></c:if>
+				<c:if test="${member_num != null }"><a href="${root }/member/change.in">${member_name}</a></c:if>
 			</div>
 		</div>
 	</div>
