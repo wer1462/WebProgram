@@ -125,13 +125,18 @@
 }
 
 .like-l{
-	width: 33%;
+	width: 100%;
+	
 }
 
 .like-l-box{
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 	margin-top: 22px;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .like-m{
@@ -156,7 +161,7 @@
 }
 
 .like-r{
-	width: 33%;
+	width: 100%;
 }
 
 .like-r-box{
@@ -166,11 +171,12 @@
 }
 
 .like-item{
-	width: 100%;
+	width: 25%;
 	margin: 12px 0px;
 	padding: 24px 0px;
 	
 	border-radius: 5px;
+	float:left;
 }
 
 .like-item-img{

@@ -145,6 +145,7 @@ public class MapDao{
 		try {
 			session = sqlSessionFactory.openSession();
 			mapDto = session.selectOne("mapDetail",str);
+			session.selectOne("mapDetailViewNum",str);
 			if(mapDto.getRoom_Type().indexOf("원룸") != -1) {
 				room = "원룸";
 			}else if(mapDto.getRoom_Type().indexOf("투룸") != -1) {
@@ -157,6 +158,7 @@ public class MapDao{
 				room = "오피스텔";
 			}
 			mapDto.setSubRoom_Type(room);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

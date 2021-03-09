@@ -99,9 +99,11 @@ public class MemberDao {
 		loginCheckId.put("member_num", member_num);
 		loginCheckId.put("likeCheck", likeCheck);
 		loginCheckId.put("room_num", room_num+",");
+		loginCheckId.put("room_numInt", Integer.parseInt(room_num));
 		try {
 			session = sqlSessionFactory.openSession();
 			session.update("likePageUpdate", loginCheckId);
+			session.update("likePageUpdateNum", loginCheckId);
 			session.commit();
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -84,11 +84,13 @@ function setReport(){
 				</div>
 				<div class="detail-t-box-r">
 					<!-- <button></button> -->
-					<div class="like-btn">
-						<c:if test="${check == 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')" checked="checked"></c:if>
-						<c:if test="${check != 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')"></c:if>
-						<label for="like">관심목록에 추가<span></span></label>
-					</div>
+						<c:if test="${member_num != null }">
+						<div class="like-btn">
+							<c:if test="${check == 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')" checked="checked"></c:if>
+							<c:if test="${check != 'checked' }"><input type="checkbox" name="like" id="like" onchange="toLikeCheck('${root }')"></c:if>
+							<label for="like">관심목록에 추가<span></span></label>
+						</div>
+					</c:if>
 					<a href="#">1:1 상담문의</a>
 					<c:if test="${member_num != null }">
 						<c:if test="${!fn: contains(mapDto.ROOM_REPORTUSER,member_num)}">

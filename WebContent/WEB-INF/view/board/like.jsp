@@ -54,50 +54,55 @@ function toLikeCheck(root,value,likecheck) {
 			</div>
 		</div>
 		
-		<c:forEach var="map" items="${mapList}">
+		
+
 			<div class="like-box">
 				<div class="like-l">
-				
-					<div class="like-l-box">
-					
-						<div class="like-item">
-							<div class="like-item-img img-item-1" OnClick="javascript:location.href ='${root}/map/mapDetail.in?room_Num=${map.room_Num}'">
-								<div class="like-del">
-									<span></span>
-								</div>
-							</div>
-							<div class="like-item-tag">
-								<div class="like-tag-l">
-									<c:if test = "${fn : contains(map.room_Type, '원룸')}"><a>원룸</a></c:if>
-									<c:if test = "${fn : contains(map.room_Type, '투룸')}"><a>원룸</a></c:if>
-									<c:if test = "${fn : contains(map.room_Type, '쓰리룸')}"><a>원룸</a></c:if>
-									<c:if test = "${fn : contains(map.room_Type, '오피스텔')}"><a>원룸</a></c:if>
-									<a>${fn:trim(fn:split(map.room_Floor,'/')[0])}</a>
-									<a>관심 ${map.room_LikeNum}</a>
-								</div>
-								<div class="like-tag-r">
-									<div class="like-btn">
-										<input type="checkbox" name="like" id="like-onoff-1" value="${map.room_Num }" onchange="toLikeCheck('${root }',this.value,this)" checked="checked">
-										<label for="like-onoff-1">관심목록<span></span></label>
+				<c:forEach var="i" begin="0" end="${mapList.size()/4}">
+			
+				<div class="like-l-box">	
+					<c:forEach var="map" items="${mapList}"  begin="${i*4}" end="${i*4+3}">
+														
+							<div class="like-item">
+								<div class="like-item-img img-item-1" OnClick="javascript:location.href ='${root}/map/mapDetail.in?room_Num=${map.room_Num}'">
+									<div class="like-del">
+										<span></span>
 									</div>
 								</div>
-							</div>
-							<div OnClick="javascript:location.href ='${root}/map/mapDetail.in?room_Num=${map.room_Num}'">
-								<div class="like-item-price">
-									<a>${map.room_Price} 만 원</a>
+								<div class="like-item-tag">
+									<div class="like-tag-l">
+										<c:if test = "${fn : contains(map.room_Type, '원룸')}"><a>원룸</a></c:if>
+										<c:if test = "${fn : contains(map.room_Type, '투룸')}"><a>원룸</a></c:if>
+										<c:if test = "${fn : contains(map.room_Type, '쓰리룸')}"><a>원룸</a></c:if>
+										<c:if test = "${fn : contains(map.room_Type, '오피스텔')}"><a>원룸</a></c:if>
+										<a>${fn:trim(fn:split(map.room_Floor,'/')[0])}</a>
+										<a>관심 ${map.room_LikeNum}</a>
+									</div>
+									<div class="like-tag-r">
+										<div class="like-btn">
+											<input type="checkbox" name="like" id="${map.room_Num }" value="${map.room_Num }" onchange="toLikeCheck('${root }',this.value,this)" checked="checked">
+											<label for="${map.room_Num }">관심목록<span></span></label>
+										</div>
+									</div>
 								</div>
-								<div class="like-item-text">
-									<a>${map.room_Floor}, ${map.room_Size}, 관리비 ${map.room_Manageprice}</a><br/>
+								<div OnClick="javascript:location.href ='${root}/map/mapDetail.in?room_Num=${map.room_Num}'">
+									<div class="like-item-price">
+										<a>${map.room_Price} 만 원</a>
+									</div>
+									<div class="like-item-text">
+										<a>${map.room_Floor}, ${map.room_Size}, 관리비 ${map.room_Manageprice}</a><br/>
+									</div>
 								</div>
-							</div>
-						</div>	
+							</div>	
+							
 								
-					</div>
-					
-					
+	
+						</c:forEach>
+					</div>		
+					</c:forEach>
 				</div>
 			</div>
-		</c:forEach>
+
 		
 		
 		

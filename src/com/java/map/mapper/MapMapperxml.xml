@@ -236,9 +236,15 @@
 		 select count(*) from room where  room_memberNum = #{room_memberNum} and room_Num != #{room_Num}
 	</select>
     
-    <select id="mapDetail" resultType="com.java.map.dto.MapDto">
+    <select id="mapDetail" resultType="com.java.map.dto.MapDto">   
 		select * from room where room_Num = #{str} 
+		
 	</select>
+	
+	<update id="mapDetailViewNum">
+		update room set ROOM_VIEWNUM = ROOM_VIEWNUM+1
+		where room_Num = #{str}	 
+	</update>
 	
 	
 	<select id="myLikePageList" resultType="com.java.map.dto.MapDto">
