@@ -79,7 +79,7 @@
 							</div>
 							<div class="member-items">
 								<label>이메일</label><br/>
-								<input type="text" maxlength="14" id="member_Email" name="member_Email" >
+								<input type="text" maxlength="30" id="member_Email" name="member_Email" >
 							</div>
 							<div class="member-items">
 								<label>전화번호</label><br/>

@@ -62,7 +62,7 @@
 	</select>
 	
 	<delete id="setDelete" parameterType="int">
-		delete from room where room_Num = #{room_Num}
+		delete from room where room_Num = #{room_num}
 	</delete>
 	
 	

@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="register" parameterType="com.java.member.dto.MemberDto">
-		insert into member values(SEQ_MEMBER_NUM.nextval,#{member_Id},#{member_Pwd},#{member_Name},#{MEMBER_BIRTH},#{member_Telephone},#{member_Email})
+		insert into member values(SEQ_MEMBER_NUM.nextval,#{member_Id},#{member_Pwd},#{member_Name},#{MEMBER_BIRTH},#{member_Telephone},#{member_Email},'')
     
 	</insert>
 
@@ -69,5 +69,13 @@
     <select id="likeList" resultType="String">
     	select member_likepage from member where member_num = #{member_num}
     </select>
+    
+    <delete id="setDelete" parameterType="int">
+		delete from room where room_Num = #{room_Num}
+	</delete>
+	
+	<delete id="userDelete" parameterType="int">
+		delete from member where member_num = #{member_num}
+	</delete>
 	
 </mapper>

@@ -3,6 +3,8 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="root" value="${pageContext.request.contextPath}"/>
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!doctype html>
 <html>
 <head>
@@ -23,20 +25,7 @@
 <script type="text/javascript" src="${root}/XHR/xhr.js"></script>
 <script type="text/javascript">
 
-function toLikeCheck(root,value,likecheck) {
-	var url = root + "/map/clickLike.in";
-	var like = likecheck.checked;
-	var str = "";
-	if(like){
-		str = "추가";
-	}else{
-		str = "제거";
-	}
-	params = "like=" + str;
-	params += "&room_Num="+value;
-	sendRequest("POST", url, null , params);
-	
-}
+
 
 </script>
 
@@ -46,10 +35,10 @@ function toLikeCheck(root,value,likecheck) {
 			<div class="like-t-box">
 				<div class="like-t-box-l">
 					<a class="member-normal">일반회원</a>
-					<a>${member_name }님의 관심목록</a>
+					<a>${member_name }님의 목록</a>
 				</div>
 				<div class="like-t-box-r">
-					<a>총 <span>${mapList.size()}</span>개의 관심 목록이 있습니다.</a>
+					<a>총 <span>${boardList.size()}</span>개의 목록이 있습니다.</a>
 				</div>
 			</div>
 		</div>
@@ -58,10 +47,10 @@ function toLikeCheck(root,value,likecheck) {
 
 			<div class="like-box">
 				<div class="like-l">
-				<c:forEach var="i" begin="0" end="${mapList.size()/4}">
+				<c:forEach var="i" begin="0" end="${boardList.size()/4}">
 			
 				<div class="like-l-box">	
-					<c:forEach var="map" items="${mapList}"  begin="${i*4}" end="${i*4+3}">
+					<c:forEach var="map" items="${boardList}"  begin="${i*4}" end="${i*4+3}">
 														
 							<div class="like-item">
 								<div class="like-item-img img-item-1" OnClick="javascript:location.href ='${root}/map/mapDetail.in?room_Num=${map.room_Num}'">
@@ -80,8 +69,7 @@ function toLikeCheck(root,value,likecheck) {
 									</div>
 									<div class="like-tag-r">
 										<div class="like-btn">
-											<input type="checkbox" name="like" id="${map.room_Num }" value="${map.room_Num }" onchange="toLikeCheck('${root }',this.value,this)" checked="checked">
-											<label for="${map.room_Num }">관심목록<span></span></label>
+											<a href="${root }/map/myListRemove.in?room_num=${map.room_Num}&currentPage=${currentPage}">삭제</a>
 										</div>
 									</div>
 								</div>
@@ -100,6 +88,9 @@ function toLikeCheck(root,value,likecheck) {
 						</c:forEach>
 					</div>		
 					</c:forEach>
+					
+		
+					
 				</div>
 			</div>
 
@@ -107,5 +98,30 @@ function toLikeCheck(root,value,likecheck) {
 		
 		
 	</div>
+	<center>
+		<fmt:parseNumber var="pageCount" value="${count/boardSize+(count%boardSize==0?0:1)}" integerOnly="true"/>
+			
+			<c:set var="pageBlock" value="${5}"/>
+			<fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+			<c:set var="startPage" value="${result*pageBlock+1}"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+			
+			<%--시작 페이지 번호 : ${startPage}, 끝페이지 번호:${endPage} --%>
+			<c:if test="${endPage> pageCount}">
+				<c:set var="endPage" value="${pageCount}"/>
+			</c:if>
+			<%--비교후 끝페이지 번호 : ${endPage} --%>
+			<%-- 이전 --%>
+			<c:if test="${startPage > pageBlock}">
+				<a href="${root}/map/myList.in?pageNumber=${startPage-pageBlock}">[이전]</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="${root}/map/myList.in?pageNumber=${i}">[${i}]</a>
+			</c:forEach>
+			
+			<c:if test="${endPage < pageCount}">
+				<a href="${root}/map/myList.in?pageNumber=${startPage+pageBlock}">[다음]</a>
+			</c:if>
+		</center>
 </body>
 </html>

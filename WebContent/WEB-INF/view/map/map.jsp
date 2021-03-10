@@ -4,6 +4,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!doctype html>
 <html>
@@ -317,6 +318,9 @@
 				var img = document.createElement("div");
 				img.setAttribute("class","list-images");
 				
+				var img2 = document.createElement("img");
+				img2.setAttribute("src","${root }/"+obj.map[i].room_Path+obj.map[i].room_FileName.split(",")[0]);
+				
 				var total = document.createElement("div");
 				total.setAttribute("class","map-list-b");
 				total.setAttribute("OnClick","location.href ='"+root+"/map/mapDetail.in?room_Num="+obj.map[i].room_Num+"'");
@@ -365,8 +369,8 @@
 				ul.appendChild(li2);
 				ul.appendChild(li3);
 
-
 				
+				img.appendChild(img2);
 				content.appendChild(ul);
 				total.appendChild(img);
 				total.appendChild(content);

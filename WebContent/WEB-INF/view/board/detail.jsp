@@ -75,7 +75,7 @@ function setReport(){
 					<a>${mapDto.room_Type }</a><a>/</a>
 					<a>${mapDto.room_Size }</a><a>/</a>
 					<c:if test="${mapDto.room_RentType == '월세'}"> 
-						<a>보증금/월세 ${mapDto.room_Price }</a>
+						<a>보증금/월세 ${mapDto.room_Price }만원</a>
 					</c:if>
 										
 					<c:if test="${mapDto.room_RentType == '전세'}">
@@ -104,7 +104,7 @@ function setReport(){
 			<c:forEach var="s" items="${fn:split(mapDto.room_FileName,',') }">
 				<div class="carousel-cell photo"><img src="${root }/${mapDto.room_Path}${s}" style="width:100%;height: 600px;"></div>
 			</c:forEach>
-		</div>
+		</div> 
 		<div id="detail-m">
 			<div class="detail-m-box">
 				<div class="detail-tag-t">
@@ -121,14 +121,14 @@ function setReport(){
 										<c:when test="${mapDto.room_RentType == '월세'}"> 
 											<li>
 												<a>보증금/월세</a>
-												<div>${mapDto.room_Price }</div>
+												<div>${mapDto.room_Price }만원</div>
 											</li> 
 										</c:when>
 										
 										<c:when test="${mapDto.room_RentType == '전세'}">
 											<li>
 												<a>전세</a>
-												<div>${mapDto.room_Price }</div>
+												<div>${mapDto.room_Price }만원</div>
 											</li> 
 										</c:when>				
 									</c:choose>

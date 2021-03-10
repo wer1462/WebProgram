@@ -351,4 +351,55 @@ public int insert(MapDto setDto) {
 		return setDto;
 	}
 
+	public List<MapDto> myList(int member_num) {
+		List<MapDto> mapList = null;	
+		try {
+			session = sqlSessionFactory.openSession();
+			mapList = session.selectList("myList", member_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return mapList;
+	}
+	
+	
+	
+	public List<MapDto> getBoardList(int startRow, int endRow,int member_num) {
+		List<MapDto> valueList = null;
+		HashMap<String,Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("member_num", member_num);
+
+		try {			
+			session = sqlSessionFactory.openSession();
+			valueList = session.selectList("myList",hMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		
+		}
+		System.out.println("valueListSize : " + valueList.size());
+		return valueList;
+
+	}
+	
+	public int userDelete(int member_num) {
+
+		int check = 0;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			check = session.selectOne("userDelete", member_num);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
 }

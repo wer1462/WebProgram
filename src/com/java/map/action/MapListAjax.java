@@ -89,6 +89,10 @@ public class MapListAjax implements Command {
 				map.put("room_Num",mapDto.getRoom_Num());
 				map.put("room_MapX",mapDto.getRoom_MapX());
 				map.put("room_MapY",mapDto.getRoom_MapY());
+				
+				map.put("room_Path",mapDto.getRoom_Path());
+				map.put("room_FileName",mapDto.getRoom_FileName());
+				
 				jsonArray.add(map);
 			}
 			

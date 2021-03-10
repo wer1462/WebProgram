@@ -295,6 +295,14 @@
 		#{room_Content}
 		) 
  	</insert>
+ 	
+ 	<select id="myList" resultType="com.java.map.dto.MapDto">
+ 		<![CDATA[
+    		select * from (select rownum as rnum, a.* 
+    		from (select * from room where ROOM_MEMBERNUM = #{member_num}) a) b 
+    		where b.rnum >= #{startRow} and b.rnum<=#{endRow}
+    	]]>
+ 	</select>
 	
     
 </mapper>

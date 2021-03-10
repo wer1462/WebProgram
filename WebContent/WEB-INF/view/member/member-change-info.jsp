@@ -44,13 +44,11 @@
 						<li class="retouch-admin">
 							<a>내 방 관리</a>
 							<ul class="room-admin">
-								<li><a href="#">올린 방</a></li>
+								<li><a href="${root }/map/myList.in">올린 방</a></li>
 							</ul>
 						</li>
+						<li class="retouch-admin"><a href="${root }/member/memberDelete.in">회원탈퇴</a></li>
 					</ul>
-				</div>
-				<div class="retouch-l-f">
-					<a href="#">회원탈퇴 바로가기<span></span></a>
 				</div>
 			</div>
 			<div class="retouch-r">
